@@ -137,5 +137,6 @@
 .grafico_barra .columnas .area_grafico .escala_x  .division{
     width: calc(100%/5);
     text-align: center;
+    
 }
 
