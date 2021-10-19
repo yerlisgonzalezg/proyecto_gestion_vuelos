@@ -1,8 +1,14 @@
 from flask import Flask
 from flask import render_template
-from flask import request
+from flask import request, flash, redirect, url_for
+import os
+from utils import isEmailValid, isPasswordValid, comprobarContraseñas, isEmailLoginValid, isPasswordLoginValid
+from forms import Formulario_Usuario
+from db import get_db, close_db
+
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 
 @app.route('/')
@@ -12,25 +18,90 @@ def index():
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
-    if request.method == 'POST':
+    try:
+        if request.method == 'POST':
 
-        nombre = request.form['nombre']
-        email = request.form['email']
-        password = request.form['password']
-        confirmpassword = request.form['confirmpassword']
+            nombre = request.form['nombre']
+            email = request.form['email']
+            password = request.form['password']
+            confirmpassword = request.form['confirmpassword']
 
-    return render_template("registro.html")
+            error = None
+            db = get_db()
+
+            if not isEmailValid(email):
+                error = "Correo invalido"
+                flash(error)
+            if not isPasswordValid(password):
+                error = "La contraseña debe contener al menos una minúscula, una mayúscula, un caracter especial, un número y 8 caracteres"
+                flash(error)
+
+            if not comprobarContraseñas(password, confirmpassword):
+                error = "Las contraseñas no coinciden"
+                flash(error)
+
+            user_email = db.execute(
+                'SELECT * FROM Usuarios WHERE correo = ?',
+                (email,)
+            ).fetchone()
+            if user_email is not None:
+                error = "Correo ingresado ya existe."
+                flash(error)
+
+            if error is not None:
+                return render_template("registro.html")
+            else:
+                db.execute(
+                    'INSERT INTO Usuarios (nombre,correo,contrasena) VALUES (?,?,?) ',
+                    (nombre, email, password)
+                )
+                db.commit()
+
+                return redirect(url_for('login'))
+
+        return render_template("registro.html")
+    except:
+        flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
+        return render_template("registro.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    try:
+        if request.method == 'POST':
 
-        email = request.form['email']
-        password = request.form['password']
-        return redirect(url_for('index'))
+            email = request.form['email']
+            password = request.form['password']
 
-    return render_template("login.html")
+            error = None
+            db = get_db()
+
+            if not isEmailLoginValid(email):
+                error = "Correo invalido"
+                flash(error)
+            if not isPasswordLoginValid(password):
+                error = "La contraseña debe contener al menos una minúscula, una mayúscula, un caracter especial, un número y 8 caracteres"
+                flash(error)
+
+            if error is not None:
+                return render_template("login.html")
+
+            else:
+                user = db.execute(
+                    'SELECT * FROM Usuarios WHERE correo = ? AND contrasena = ?',
+                    (email, password)
+                ).fetchone()
+                if user is None:
+                    error = "Correo y/o contraseña no son correctos."
+                    flash(error)
+                    return render_template("login.html")
+                else:
+                    return render_template("index.html")
+
+        return render_template("login.html")
+    except:
+        flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
+        return render_template("login.html")
 
 
 if __name__ == '__main__':

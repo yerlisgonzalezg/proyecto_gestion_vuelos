@@ -7,10 +7,11 @@
   color: white;
   font-size: 25px;
 }
-#header nav a img{
+#header nav a img {
   width: 50px;
 }
-.logo-inicio img, .logo-registro img {
+.logo-inicio img,
+.logo-registro img {
   width: 100px;
 }
 
@@ -33,7 +34,7 @@ nav.navbar {
   filter: grayscale(70%);
 }
 #imagenes img {
-  max-height:50vh;
+  max-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,36 +62,41 @@ nav.navbar {
   align-content: center;
 }
 
-
 .container-logo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.formulario-login, .formulario-registro {
-  background:rgba(0, 0,0, 0.4);
+.formulario-login,
+.formulario-registro {
+  background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0, 0,0, 0.4);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   border: 1px solid lightgrey;
   color: white;
 }
 
-.parrafo{
+.parrafo {
   text-align: justify;
 }
 
-.body-login, .body-registro{
+.body-login,
+.body-registro {
   background-image: url(../img/pexels-ekky-wicaksono-2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-size: 100%;
 }
 
-#link-login a, #link-registro a{
-color: white;
+#link-login a,
+#link-registro a {
+  color: white;
 }
 
-
-
+.flashes li {
+  list-style: none;
+  color: #E00202;
+  font-weight: bold;
+}
