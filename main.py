@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
@@ -9,11 +10,12 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-
+@app.route('/route_name', methods=['GET', 'POST'])
+def method_name():
+    pass
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
     if request.method == 'POST':
-
         nombre = request.form['nombre']
         email = request.form['email']
         password = request.form['password']
@@ -25,11 +27,9 @@ def registro():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-
         email = request.form['email']
         password = request.form['password']
-        return redirect(url_for('index'))
-
+        
     return render_template("login.html")
 
 

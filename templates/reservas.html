@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Aeropuerto Fabio León Bentley​</title>
+  </head>
+  <body>
+    <h3>Aeropuerto Fabio León Bentley​</h3>
+    <h2>SISTEMA DE RESERVAS - AEROPUERTO FABIO LEÓN BENTLEY</h2>
+      <div id="mensaje"></div>
+      <form id= "formulario" method="post" action="#">
+        <ul>
+          <li>
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Nombre completo" required>
+          </li>
+
+          <li>
+            <label for="identificacion">identificacion</label>
+            <input type="text" id="identificacion" placeholder="identificacion" required>
+          </li>
+
+          <li>
+            <label for="paisorigen">Ciudad Origen</label>
+            <select id="paisorigen" required >
+              <option></option>
+              <option value="1">Barranquilla</option>
+              <option value="2">Bogotá</option>
+              <option value="3">Cartagena</option>
+              <Option value="4">Santa Marta</Option>
+            </select>
+          </li>
+
+          <li>
+            <label for="paisdestino">Ciudad Destino</label>
+            <select id="paisdestino" required>
+              <option></option>
+              <option value="1">Barranquilla</option>
+              <option value="2">Bogotá</option>
+              <option value="3">Cartagena</option>
+              <Option value="4">Santa Marta</Option>
+            </select>
+          </li>
+
+          <li id="fecharegresoL">
+            <label for="tipo">Selecione el tipo</label>
+            Ida/Regreso
+            <input type="radio" id="tipo1" name="tipo">
+            Sin Regreso
+            <input type="radio" id="tipo2" name="tipo">
+          </li>
+
+          <li>
+            <label for='fechaida'>Fecha ida</label>
+            <input type="date" id="fechaida" required>
+          </li>
+
+          <li>
+            <label for='fecharegreso'>Fecha Regreso</label>
+            <input type="date" id="fecharegreso">
+          </li>
+
+          <li>
+            <label for="Ntiquetes">Numero de tiquetes</label>
+            <input type="number" id="Ntiquetes">
+          </li>
+
+          <li>
+            <button type="submit">Reservar Tiquete </button>
+          </li>
+
+
+        </ul>
+
+      </form>
+
+      <script src="js/validaciones.js" async defer></script>
+  </body>
+</html>

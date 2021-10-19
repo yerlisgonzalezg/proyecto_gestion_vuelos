@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificar vuelos</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/57f2260adb.js" crossorigin="anonymous"></script>
+    <style>
+    body {font-family: Arial;}
+    
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+    
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      border-radius: 0  20px 0 0;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+    
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: rgb(147, 123, 255);
+    }
+    
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #1a6bd5;
+      color: white;
+    }
+    
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        text-align: center;
+        padding: 8px;
+      }
+        
+      tr:nth-child(even){background-color: #f2f2f2}
+      
+      th {
+        background-color: #1a6bd5;
+        color: white;
+      }
+      
+      tr:nth-child(even) {background-color: #f2f2f2;}
+      tr:hover {background-color: lightblue;}
+    
+      input[type=text] {
+        width: 9.5%;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        outline: none;
+        transition: width 0.4s ease-in-out;
+      }
+      
+      input[type=text]:focus {
+        background-color: lightblue;
+        width: 10%;
+      }
+    
+      #imagen {
+        background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+    </style>
+
+</head>
+<body>
+    
+    <div id="imagen"> 
+        <h2>Calificar vuelos</h2>
+        <div>
+            <form action="/action_page.php">
+                <label for="fname">Desde:</label>
+                <input type="text" id="fname" name="fname">
+                <label for="fname">Hasta:</label>
+                <input type="text" id="fname" name="fname">
+                <!-- <input type="submit" value="Submit"> -->
+                
+            </form>
+            <button class="tablinks" onclick="openCity(event, 'calificar')">Calificar vuelo</button>
+        </div>
+
+        <div id="calificar" class="tabcontent">
+            <table>
+                <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha de ida</th>
+                <th>Fecha de regreso</th>
+                <th>Calificar vuelo</th>
+                </tr>
+                <tr>
+                <td>Bogotá</td>
+                <td>Japón</td>
+                <td>15-10-2021</td>
+                <td>30-10-2021</td>
+                <td><i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i></td>
+                </tr>
+                <tr>
+                <td>Barranquilla</td>
+                <td>Londres</td>
+                <td>14-10-2021</td>
+                <td>25-11-2021</td>
+                <td><i class="far fa-star">
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                </i></td>
+                </tr>
+                <tr>
+                <td>Medellín</td>
+                <td>Paris</td>
+                <td>16-10-2021</td>
+                <td>26-12-2021</td>
+                <td><i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                </td>
+                </tr>
+                <tr>
+                <td>Cleveland</td>
+                <td>Bogotá</td>
+                <td>17-10-2021</td>
+                <td>15-12-2021</td>
+                <td><i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i></td>
+                </tr>
+            </table>
+        </div>
+    
+
+        <script>
+            function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+            }
+            </script>
+        </div>
+</body>
+</html>
