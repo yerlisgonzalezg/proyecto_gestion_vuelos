@@ -13,25 +13,31 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
 
     <title>Registrarse</title>
   </head>
-  <body>
+  <body class="body-registro">
     <main>
-      <section>
+      <section class="logo-registro">
         <div class="container">
-          <div class="row justify-content-lg-start pt-5 mt-5 ms-1">
-            <div class="col-md-4 col-lg-5 text-center">
-              <img src="" alt="Logo" />
+          <div class="row justify-content-center pt-5 mt-5 ms-1">
+            <div class="col-md-4 col-lg text-center">
+              <img src="../static/img/aeropuerto.png" alt="Logo" />
             </div>
           </div>
         </div>
       </section>
-      <section>
+      <section class="section-registro">
         <div class="container">
-          <div class="row justify-content-lg-start pt-5 mt-5 ms-1">
+          <div class="row justify-content-center pt-5 mt-5 ms-1">
             <div class="col-md-4 col-lg-5 formulario-registro">
-              <form action="">
+              <form
+                action="/registro"
+                method="POST"
+                name="formRegistro"
+                onsubmit="validar_formulario();"
+              >
                 <div class="form-group text-center mb-5">
                   <h2>Registrarse</h2>
                 </div>
@@ -75,6 +81,15 @@
                     placeholder="Contraseña"
                   />
                 </div>
+                <div>
+                  {% with messages = get_flashed_messages() %} {% if messages %}
+                  <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %} {% endwith %}
+                </div>
                 <div class="form-row">
                   <div class="d-grid gap-2 col-6 mx-auto">
                     <button type="submit" class="btn btn-primary mt-4 mb-4">
@@ -82,14 +97,10 @@
                     </button>
                   </div>
                 </div>
-                <div class="form-group text-center mb-4">
-                  <a href="login.html">Iniciar sesión</a>
+                <div class="form-group text-center mb-4" id="link-login">
+                  <a href="/login">Iniciar sesión</a>
                 </div>
               </form>
-            </div>
-
-            <div class="col-md-4 col-lg-7">
-              <img src="" alt="Imagen" />
             </div>
           </div>
         </div>
