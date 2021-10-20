@@ -5,6 +5,7 @@ import os
 from utils import isEmailValid, isPasswordValid, comprobarContraseñas, isEmailLoginValid, isPasswordLoginValid
 from forms import Formulario_Usuario
 from db import get_db, close_db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
@@ -51,9 +52,10 @@ def registro():
             if error is not None:
                 return render_template("registro.html")
             else:
+                password_cifrado = generate_password_hash(password)
                 db.execute(
                     'INSERT INTO Usuarios (nombre,correo,contrasena) VALUES (?,?,?) ',
-                    (nombre, email, password)
+                    (nombre, email, password_cifrado)
                 )
                 db.commit()
 
@@ -88,16 +90,20 @@ def login():
 
             else:
                 user = db.execute(
-                    'SELECT * FROM Usuarios WHERE correo = ? AND contrasena = ?',
-                    (email, password)
+                    # 'SELECT * FROM Usuarios WHERE correo = ? AND contrasena = ?',
+                    'SELECT idusuarios, nombre, correo, contrasena FROM usuarios WHERE correo = ?',
+                    (email,)
                 ).fetchone()
                 if user is None:
-                    error = "Correo y/o contraseña no son correctos."
+                    error = "Correo y/o contraseña no existe."
                     flash(error)
                     return render_template("login.html")
                 else:
-                    return render_template("index.html")
-
+                    usuario_valido = check_password_hash(user[3], password)
+                    if not usuario_valido:
+                        error = "Usuario y/o contraseña no son correctos."
+                        flash(error)
+                    return redirect(url_for('index'))
         return render_template("login.html")
     except:
         flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
