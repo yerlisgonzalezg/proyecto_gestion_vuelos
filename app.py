@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request, flash, redirect, url_for
 import os
+from db  import consultar_vuelos_llegada,consultar_vuelos_salidas
 from utils import isEmailValid, isPasswordValid, comprobarContraseñas, isEmailLoginValid, isPasswordLoginValid
 from forms import Formulario_Usuario
 from db import get_db, close_db
@@ -108,6 +109,15 @@ def login():
     except:
         flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
         return render_template("login.html")
+
+@app.route('/dashboard', methods=['GET', 'POST'])
+#@login_required
+def dashboard():
+    vuelos_llegada=consultar_vuelos_llegada()
+    vuelos_salida=consultar_vuelos_salidas()
+    
+    return render_template('dashboard.html', vuelos_llegada=vuelos_llegada,vuelos_salida=vuelos_salida )
+
 
 
 if __name__ == '__main__':
