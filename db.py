@@ -19,6 +19,13 @@ def close_db():
     if db is not None:
         db.close()        
 
+def sql_connection():
+    try:
+        conn=sqlite3.connect('bd_vuelos.db')
+        return conn
+    except Error:
+        print(Error)
+        
 def consultar_vuelos_salidas():
     sql= "SELECT * FROM vuelos WHERE origen='Mitu' "
     conn=sql_connection()
