@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <nav class="navbar navbar-expand-lg  fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img src="../static/img/aeropuerto_favicon.ico" alt="logo" />
+                      </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="../index.html">Inicio</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="../dashboard.html">Dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="../usuarios.html">Usuarios</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="../vuelos.html">Vuelos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link " href="../comentarios.html">Comentarios</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="collapse navbar-collapse" id="navbar-font">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link"  href="/logout">Cerrar sesión</a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+        </div>
+    </header>
+    <section>
+    
+        <hr>
+        <div class="container ">
+            <div class="row justify-content-center pt-5 mx-auto">
+                <div class="col-6 border border-dark ">
+                    <h2>Salidas</h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">vuelo</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Puerta</th>
+                            <th scope="col">Tiempo</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%for vuelo in vuelos_salida %}
+                            
+                        <tr>
+                            <th scope="row">{%print(vuelo[0]) %}</th>
+                            <td>{%print(vuelo[2]) %}</td>
+                            <td>{%print(vuelo[4]) %}</td>
+                            <td>{%print(vuelo[6]) %}</td>
+                            <td>{%print(vuelo[3]) %}</td>
+                        </tr>
+                        {%endfor %}
+                        
+                    
+                        
+                        </tbody>
+                    </table>
+                </div>
+            
+                <div class="col-6 border border-dark  ">
+                    <table class="table">
+                        <h2>Llegadas</h2>
+                        <thead>
+                        
+                        <tr>
+                            <th scope="col">vuelo</th>
+                            <th scope="col">Origen</th>
+                            <th scope="col">Puerta</th>
+                            <th scope="col">Tiempo</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%for vuelo in vuelos_llegada %}   
+                        <tr>
+                            <th scope="row">{%print(vuelo[0]) %}</th>
+                            <td>{%print(vuelo[1]) %}</td>
+                            <td>{%print(vuelo[4]) %}</td>
+                            <td>{%print(vuelo[5]) %}</td>
+                            <td>{%print(vuelo[3]) %}</td>
+                           
+                        </tr>
+                        {%endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container row  mx-auto">
+            <div class="row justify-content-start col-6 border border-dark ">
+                <h4>Total operaciones</h4>
+                <div class="col-2 justify-content-start mx-auto">
+                    <p class="fs-1">1500</p>
+                    <p class="fs-4 ">Operaciones</p>
+                </div>
+                <div class="col-2 justify-content-center mx-auto">
+                    <p class="fs-1">1050</p>
+                    <p class="fs-4">Llegadas</p>
+                </div>
+                <div class="col-2 justify-content-center mx-auto">
+                    <p class="fs-1">450</p>
+                    <p class="fs-4">Salidas</p>
+                </div>
+            </div>
+            <div class=" row col-6 mx-auto me-0 ">
+                <div class="col-6 border border-dark">
+                    <h4 class="titulo_grafico">total vuelos cancelados</h4>
+                    <div class="container_grafico ">
+                        <div class="grafico ">   
+                        </div>
+                        <div class="container_leyenda">
+                            <span class="leyenda_all">
+                                <span class="color_1"></span>
+                                <p class="social">30% </p>
+                            </span>
+                            <span class="leyenda_all">
+                                <span class="color_2"></span>
+                                <p class="social">70% </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 border border-dark justify-content-center mx-auto">
+                    <h4 class="titulo_grafico">total retrasos</h4>
+                    <div class="container_grafico ">
+                       
+                        <div class="grafico2 ">
+                            
+                        </div>
+                        <div class="container_leyenda">
+                            <span class="leyenda_all">
+                                <span class="color_3"></span>
+                                <p class="social">20%  </p>
+                            </span>
+                            <span class="leyenda_all">
+                                <span class="color_4"></span>
+                                <p class="social">80% </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container row mx-auto " style="height: 250px" >
+            <div class="row justify-content-start col-6 border border-dark ">
+                <div class="col-4 justify-content-start mx-auto">
+                    <h4 class="text-align-center">Conteo de usuarios</h4>
+                    <br>
+                    <p class="fs-1">18000</p>
+                </div>
+               
+                <div class="col-4 justify-content-center mx-auto">
+                    <h4>Indice de comentarios</h4>
+                    <br>
+                    <p class="fs-1">8000</p>
+                </div>
+            </div>
+                
+
+        
+            <div class="container  col-6 mx-auto border border-dark">
+                
+                <div class="grafico_barra">
+                    <h4>Indice de comentarios</h4>
+                    <div class="columnas">
+                        <div class="escala_y">
+                            
+                            <div  class="division">2.5K</div>
+                            <div  class="division">2.0K</div>
+                            <div  class="division">1.5K</div>
+                            <div  class="division">1.0K</div>
+                            
+
+                        </div>
+
+                        <div class="area_grafico">
+                            <div class="area_barras">
+                                <div class="division">
+                                    <div class="barra" style="height: 30%"></div>
+                                </div>
+                                <div class="division">
+                                    <div class="barra" style="height: 60%"></div>
+                                </div>
+                                <div class="division">
+                                    <div class="barra" style="height: 45%"></div>
+                                </div>
+                                <div class="division">
+                                    <div class="barra" style="height: 20%"></div>
+                                </div>
+                                <div class="division">
+                                    <div class="barra"style="height: 10%"></div>
+                                </div>
+                            </div>
+                            <div class="escala_x">
+                                <div class="division">
+                                    <div>
+                                        
+                                        😄
+                                    </div>
+                                </div>
+                                <div class="division">
+                                    <div>
+                                        🙂
+                                    </div>
+                                </div>
+                                <div class="division">
+                                    <div>
+                                        😐
+                                    </div>
+                                </div>
+                                <div class="division">
+                                    <div>
+                                        🙁
+                                    </div>
+                                </div>
+                                <div class="division">
+                                    <div>
+                                        😡
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    
+    </section>
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
