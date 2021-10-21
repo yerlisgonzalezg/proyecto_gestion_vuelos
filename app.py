@@ -104,7 +104,7 @@ def login():
                     if not usuario_valido:
                         error = "Usuario y/o contraseña no son correctos."
                         flash(error)
-                    return redirect(url_for('index'))
+                    return redirect(url_for('dashboard'))
         return render_template("login.html")
     except:
         flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
