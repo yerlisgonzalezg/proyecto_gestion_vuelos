@@ -97,6 +97,30 @@ nav.navbar {
 
 .flashes li {
   list-style: none;
-  color: #E00202;
+  color: #e00202;
   font-weight: bold;
+}
+
+main .main-input-container {
+  width: 390px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+main .main-input input {
+  width: 340px;
+  height: 40px;
+  border: none;
+  outline: none;
+}
+
+main .main-input .eye-icon {
+  background-image: url("/static/img/ojo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }

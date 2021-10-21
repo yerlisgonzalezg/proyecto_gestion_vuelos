@@ -55,10 +55,10 @@ def registro():
                 password_cifrado = generate_password_hash(password)
                 db.execute(
                     'INSERT INTO Usuarios (nombre,correo,contrasena) VALUES (?,?,?) ',
-                    (nombre, email, password_cifrado)
-                )
+                     (nombre, email, password_cifrado)
+                 )
                 db.commit()
-
+                
                 return redirect(url_for('login'))
 
         return render_template("registro.html")
