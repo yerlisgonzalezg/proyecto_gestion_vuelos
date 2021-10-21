@@ -55,3 +55,53 @@ function validar_formulario_login() {
         return false
     }
 }
+
+function validar_formulario_agregar_vuelo() {
+
+    vNumVuelo = document.getElementById("numvuelo").value;
+    vCapVuelo = document.getElementById("capvuelo").value;
+    vEstVuelo = document.getElementById("estvuelo").value;
+    vPilotoAsig = document.getElementById("pilotoasig").value;
+    vOrigen = document.getElementById("origen").value;
+    vDestino = document.getElementById("destino").value;
+    vAvionAsig = document.getElementById("avionasig").value;
+    vFechaSalida = document.getElementById("fechasalida").value;
+
+
+    if (vNumVuelo == "") {
+        alert("El campo del numero del vuelo no debe estar vacío.");
+        return false
+    }
+    else if (vCapVuelo == "") {
+        alert("El campo Capacidad de vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vEstVuelo == "") {
+        alert("El campo Estado de vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vPilotoAsig == "") {
+        alert("El campo Piloto de vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vOrigen == "") {
+        alert("El campo Origen de vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vDestino == "") {
+        alert("El campo Destino de vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vAvionAsig == "") {
+        alert("El campo Avion asignado a vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vCapVuelo == "") {
+        alert("El campo Capacidad de vuelo no debe estar vacío.");
+        return false
+    } 
+    else if (vFechaSalida == "") {
+        alert("El campo Fecha de salida de vuelo no debe estar vacío.");
+        return false
+    } 
+}
