@@ -110,5 +110,56 @@ def login():
         return render_template("login.html")
 
 
+
+@app.route('/reservas', methods=['GET', 'POST'])
+def reservas():
+    try:
+
+        if request.method == 'POST':
+
+            nombre = request.form['nombre']
+            identificacion = request.form['identificacion']
+            paisorigen = request.form['paisorigen']
+            paisdestino = request.form['paisdestino']
+            fechaida = request.form['fechaida']
+            fecharegreso = request.form['fecharegreso']
+            Ntiquetes = request.form['Ntiquetes']
+            id_usuario = request.form['id_usuario']
+            id_vuelo = request.form['id_vuelo']
+
+            db = get_db()
+            
+            cursor = db.cursor()
+
+            # cursor.execute(
+                    # 'INSERT INTO reservas (nombre,identificacion,id_usuario,ciudad_origen,ciudad_destino,fecha_ida,fecha_regreso,no_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                        # (nombre, identificacion,id_usuario,paisorigen,paisdestino,fechaida,fecharegreso,Ntiquetes,id_vuelo )
+                # )
+            # db.commit()
+
+
+
+
+            db.execute(
+                        # 'INSERT INTO Usuarios (nombre,correo,contrasena) VALUES (?,?,?) ',
+                        # 'INSERT INTO reservas (idreservas,nombre,identificacion, id_usuario, ciudad_origen,ciudad_destino,tipo_vuelo,fecha_ida,fecha_regreso,no_tiquetes,id_vuelo)
+                        'INSERT INTO reservas (nombre,identificacion,id_usuario,ciudad_origen,ciudad_destino,fecha_ida,fecha_regreso,no_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                        nombre, identificacion,id_usuario,paisorigen,paisdestino,fechaida,fecharegreso,Ntiquetes,id_vuelo )
+            )
+            db.commit()
+            return render_template("reservas.html")
+        return render_template("reservas.html")
+
+    except:
+        flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
+        return render_template("reservas.html")
+
+
+
+
+@app.route('/comentarios')
+def comentarios():
+    return render_template("comentarios.html")
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

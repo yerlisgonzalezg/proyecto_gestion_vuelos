@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/estilos.css">
+    <title>Aeropuerto Fabio León Bentley​</title>
+  </head>
+<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+ 
+    <header id="header">
+      <nav class="navbar navbar-expand-lg  fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img src="../static/img/aeropuerto.png" alt="logo" />
+            Aeropuerto Fabio Alberto León Bentley
+          </a>
+          <div class="collapse navbar-collapse" id="navbar-font">
+          </div>
+        </div>
+      </nav>
+    </header>
+
+      <div id="mensaje"></div>
+    <form id= "formulario" method="post" action="#">
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+      <h2>RESERVA TU VUELO AQUI</h2>
+      </div>
+      <div class="container" >
+        <ul>
+            <li id="pnombre">
+              <label for="nombre">Nombre Completo</label>
+              <input type="text" id="nombre" placeholder="Nombre completo" required>
+            </li>
+
+          <li id="pidentificacion">
+            <label for="identificacion">Identificacion</label>
+            <input type="text" id="identificacion" placeholder="identificacion" required>
+          </li>
+
+          <li>
+            <label for="paisorigen">Ciudad Origen</label>
+            <select id="paisorigen" required >
+              <option></option>
+              <option value="1">Barranquilla</option>
+              <option value="2">Bogotá</option>
+              <option value="3">Cartagena</option>
+              <Option value="4">Santa Marta</Option>
+            </select>
+          </li>
+
+          <li>
+            <label for="paisdestino">Ciudad Destino</label>
+            <select id="paisdestino" required>
+              <option></option>
+              <option value="1">Barranquilla</option>
+              <option value="2">Bogotá</option>
+              <option value="3">Cartagena</option>
+              <Option value="4">Santa Marta</Option>
+            </select>
+          </li>
+
+          <li id="fecharegresoL">
+            <label for="tipo">Selecione el tipo</label>
+            Ida/Regreso
+            <input type="radio" id="tipo1" name="tipo">
+            Sin Regreso
+            <input type="radio" id="tipo2" name="tipo">
+          </li>
+
+          <li>
+            <label for='fechaida'>Fecha ida</label>
+            <input type="date" id="fechaida" required>
+          </li>
+
+          <li id=fecharegresoS>
+            <label for='fecharegreso'>Fecha Regreso</label>
+            <input type="date" id="fecharegreso">
+          </li>
+
+          <li>
+            <label for="Ntiquetes">Numero de tiquetes</label>
+            <input type="number" id="Ntiquetes">
+          </li>
+
+          <li>
+            <button type="submit">Reservar Tiquete </button>
+          </li>
+
+
+        </ul>
+      </div>
+    </form>
+
+
+
+
+
+      </form>
+
+      <script src="../static/js/validaciones.js" async defer></script>
+  </body>
+</html>

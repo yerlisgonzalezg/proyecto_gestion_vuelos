@@ -1,0 +1,27 @@
+ul {
+  list-style-type: none;
+}
+
+label {
+  width: 180px;
+  height: 40PX;
+  display: inline-block;
+}
+
+input[type='text'] {
+  width: 150px;
+  height: 80%;
+}
+
+body {
+  height: 880px;
+  background-image: url("https://s1.1zoom.me/b4430/160/Passenger_Airplanes_Sky_Clouds_547402_3840x2160.jpg");
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+}
+
+
+
+
+/*# sourceMappingURL=estilos.css.map */
