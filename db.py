@@ -41,3 +41,28 @@ def consultar_vuelos_llegada():
     cursor.execute(sql)
     vuelos_llegada=cursor.fetchall()
     return vuelos_llegada
+
+
+def consultar_total_operaciones():
+    sql= "SELECT count(idvuelos) FROM vuelos "
+    conn=sql_connection()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+    operaciones=cursor.fetchone()
+    return operaciones
+
+def consultar_total_llegadas():
+    sql= "SELECT count('idvuelos') FROM vuelos WHERE destino='Mitu'"
+    conn=sql_connection()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+    llegadas=cursor.fetchone()
+    return llegadas
+
+def consultar_total_salidas():
+    sql= "SELECT count('idvuelos') FROM vuelos WHERE origen='Mitu'"
+    conn=sql_connection()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+    salidas=cursor.fetchone()
+    return salidas

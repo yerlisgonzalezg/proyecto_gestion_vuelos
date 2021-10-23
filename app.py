@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request, flash, redirect, url_for
 import os
-from db  import consultar_vuelos_llegada,consultar_vuelos_salidas
+from db  import consultar_vuelos_llegada,consultar_vuelos_salidas, consultar_total_operaciones, consultar_total_llegadas,consultar_total_salidas
 from utils import isEmailValid, isPasswordValid, comprobarContraseñas, isEmailLoginValid, isPasswordLoginValid
 from forms import Formulario_Usuario
 from db import get_db, close_db
@@ -115,8 +115,12 @@ def login():
 def dashboard():
     vuelos_llegada=consultar_vuelos_llegada()
     vuelos_salida=consultar_vuelos_salidas()
-    
-    return render_template('dashboard.html', vuelos_llegada=vuelos_llegada,vuelos_salida=vuelos_salida )
+    operaciones=consultar_total_operaciones()
+    llegadas=consultar_total_llegadas()
+    salidas=consultar_total_salidas()
+    print("cantidad de operaciones",llegadas)
+    return render_template('dashboard.html', vuelos_llegada=vuelos_llegada,vuelos_salida=vuelos_salida,operaciones=operaciones,llegadas=llegadas, salidas=salidas )
+
 
 
 
