@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar Vuelos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../static/css/style.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://kit.fontawesome.com/57f2260adb.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab a {
+        /*background-color: inherit;*/
+        float: left;
+        border: none;
+        border-radius: 0 10px 0 0;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+        background-color: #1a6bd5;
+        color: white;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab a:hover {
+        background-color: rgb(147, 123, 255);
+      }
+
+      /* Create an active/current tablink class */
+      /*.tab a.active {
+  background-color: #1a6bd5;
+  color: white;
+}*/
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      th {
+        background-color: #1a6bd5;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: lightblue;
+      }
+
+      input[type="text"] {
+        width: 9.5%;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        outline: none;
+        transition: width 0.4s ease-in-out;
+      }
+
+      input[type="text"]:focus {
+        background-color: lightblue;
+        width: 10%;
+      }
+
+      #imagen {
+        background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Nav</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    href="../templates/index.html"
+                    >Inicio</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../templates/usuarios.html"
+                    >Usuarios</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/buscar_vuelos">Vuelos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../templates/vuelos.html"
+                    >Comentarios</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section>
+      <header><nav></nav></header>
+      <div id="imagen">
+        <h2>Buscar vuelos</h2>
+
+        <div class="tab">
+          <a href="/buscar_vuelos_ida_vuelta" style="text-decoration: none"
+            >Ida y vuelta</a
+          >
+          <a href="/buscar_vuelos_ida" style="text-decoration: none"
+            >Sólo ida</a
+          >
+
+          <!-- <button class="tablinks" action="/buscar_vuelos_ida_vuelta" type="submit">Ida y vuelta</button> -->
+          <!-- <button class="tablinks" onclick="openCity(event, 'ida')">Sólo ida</button> -->
+        </div>
+        <div>
+          <form action="{{ url_for('buscar_vuelos_ida') }}" method="post">
+            <label for="origen">Origen:</label>
+            <input type="text" id="fname" name="origen" />
+            <label for="destino">Destino:</label>
+            <input type="text" id="fname" name="destino" />
+            <label for="ida">Fecha de ida:</label>
+            <input type="text" id="fname" name="ida" />
+            <label for="pasajero">No. de pasajeros:</label>
+            <input type="text" id="fname" name="pasajero" />
+            <input type="submit" value="Buscar Vuelos" />
+          </form>
+        </div>
+        <div>
+          <table .>
+            <thead>
+              <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha de ida</th>
+                <th>Reservar vuelo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for vuelo in vuelos %}
+
+                <td>{% print(vuelo[1]) %}</td>
+                <td>{% print(vuelo[2]) %}</td>
+                <td>{% print(vuelo[7]) %}</td>
+
+                <td><i class="fas fa-plane-departure"></i></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+          <script>
+            window.alert("{{ message }}");
+          </script>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+      </div>
+    </section>
+    <footer></footer>
+  </body>
+</html>
