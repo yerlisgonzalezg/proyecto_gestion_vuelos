@@ -26,18 +26,3 @@ def sql_connection():
     except Error:
         print(Error)
         
-def consultar_vuelos_salidas():
-    sql= "SELECT * FROM vuelos WHERE origen='Mitu' "
-    conn=sql_connection()
-    cursor=conn.cursor()
-    cursor.execute(sql)
-    vuelos_salida=cursor.fetchall()
-    return vuelos_salida
-
-def consultar_vuelos_llegada():
-    sql= "SELECT * FROM vuelos WHERE destino='Mitu'"
-    conn=sql_connection()
-    cursor=conn.cursor()
-    cursor.execute(sql)
-    vuelos_llegada=cursor.fetchall()
-    return vuelos_llegada
