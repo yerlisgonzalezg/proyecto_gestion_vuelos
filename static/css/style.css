@@ -70,7 +70,7 @@ nav.navbar {
 }
 
 .formulario-login,
-.formulario-registro {
+.formulario-registro, .formulario-reservas {
   background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 10px;
@@ -359,4 +359,17 @@ main .main-input .eye-icon,
   background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
+}
+/*Estilos reservas*/
+
+.body-reservas {
+      height: 880px;
+      background-image: url("../img/pexels-andrea-piacquadio-842921.jpg");
+      background-size: cover;
+      background-repeat:no-repeat;
+      background-position: center center;
+    }
+
+.formulario-reservas ul li{
+   list-style: none;
 }

@@ -77,3 +77,18 @@ def consultar_vuelos_ida(origen, destino, ida):
 
     return cursor
     
+def reservar_vuelos(nombre,apellido,identificacion,email,id_usuario,origen,destino,tipo,ida,regreso,tiquetes,id_vuelo):
+    db = get_db()
+    db.execute(
+        'INSERT INTO reservas (nombre,apellido,identificacion,email,id_usuario,ciudad_origen,ciudad_destino,tipo_vuelo,fecha_ida,fecha_regreso,n_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?,?) ',
+        (nombre,apellido,identificacion,email,id_usuario,origen,destino,tipo,ida,regreso,tiquetes,id_vuelo)
+    )
+    db.commit()
+
+def agregar_vuelos(origen,destino,estado,vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad):
+    db = get_db()
+    db.execute(
+        'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?) ',
+        (origen,destino,estado,vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad)
+    )
+    db.commit()
