@@ -211,6 +211,7 @@ def crear_usuario():
 @app.route('/buscar_vuelos', methods=['GET', 'POST'])
 @login_required
 def buscar_vuelos():
+    
     return render_template('buscar_vuelos.html')
 
 
@@ -269,12 +270,12 @@ def buscar_vuelos_ida():
     return render_template("buscar_vuelos_ida.html")
 
 
-@app.route('/agregar_vuelos', methods=['GET', 'POST'])
+@app.route('/agregar_vuelo', methods=['GET', 'POST'])
 @login_required
 def agregar_vuelos():
     rol_usuario = session.get('rol')
     if rol_usuario == 'adm':
-        return render_template('agregar_vuelos')
+        return render_template('agregar_vuelo.html')
     else:
         return redirect(url_for('acceso_denegado'))
 

@@ -76,3 +76,4 @@ def consultar_vuelos_ida(origen, destino, ida):
         (origen, destino, ida)).fetchall()
 
     return cursor
+    
