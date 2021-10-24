@@ -211,6 +211,7 @@ def crear_usuario():
 @app.route('/buscar_vuelos', methods=['GET', 'POST'])
 @login_required
 def buscar_vuelos():
+    
     return render_template('buscar_vuelos.html')
 
 

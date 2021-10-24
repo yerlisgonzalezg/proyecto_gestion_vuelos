@@ -186,8 +186,15 @@
                 <td>{% print(vuelo[1]) %}</td>
                 <td>{% print(vuelo[2]) %}</td>
                 <td>{% print(vuelo[7]) %}</td>
-
-                <td><i class="fas fa-plane-departure"></i></td>
+                
+                  <td>
+                    <a href="/reservas">
+                    <button class="btn btn-warning"  >
+                      <i class="fas fa-plane-departure "></i>
+                    </button>
+                    </a>
+                  </td>
+                
               </tr>
               {% endfor %}
             </tbody>

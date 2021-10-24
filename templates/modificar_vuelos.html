@@ -1,154 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Vuelo</title>
+    <style>
+        form {
+  margin: 0 auto;
+  width: 400px;
+  /* Esquema del formulario */
+  padding: 2em;
+  border: 4px solid #CCC;
+  border-radius: 1em;
+}
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    <title>Agregar Vuelo</title>
-  </head>
-  <body class="body-registro">
-    <main>
-      <section class="logo-registro">
-        <div class="container">
-          <div class="row justify-content-center pt-5 mt-5 ms-1">
-            <div class="col-md-4 col-lg text-center">
-              <img src="../static/img/aeropuerto.png" alt="Logo" />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section-registro">
-        <div class="container">
-          <div class="row justify-content-center pt-5 mt-5 ms-1">
-            <div class="col-md-4 col-lg-5 formulario-registro">
-              <form
-                action="/modificar_vuelo"
-                method="POST"
-                name="formModificarVuelo"
-                onsubmit="validar_formulario_modificar_vuelo();"
-              >
-                <div class="form-group text-center mb-5">
-                  <h2>Modificar Vuelo</h2>
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="numvuelo">Numero de Vuelo</label>
-                  <input
-                    type="text"
-                    name="numvuelo"
-                    id="numvuelo"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Numero de Vuelo"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="capvuelo">Capacidad de Vuelo</label>
-                  <input
-                    type="text"
-                    name="capvuelo"
-                    id="capvuelo"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Capacidad de Vuelo"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="estvuelo">Estado de Vuelo</label>
-                  <input
-                    type="text"
-                    name="estvuelo"
-                    id="estvuelo"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Estado de Vuelo"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="pilotoasig">Piloto Asignado</label>
-                  <input
-                    type="text"
-                    name="pilotoasig"
-                    id="pilotoasig"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Piloto Asignado"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="origen">Origen</label>
-                  <input
-                    type="text"
-                    name="origen"
-                    id="origen"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Ciudad de Origen"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="destino">Destino</label>
-                  <input
-                    type="text"
-                    name="destino"
-                    id="destino"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Ciudad de Destino"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="avionasig">Avión Asignado</label>
-                  <input
-                    type="text"
-                    name="avionasig"
-                    id="avionasig"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Avión Asignado"
-                  />
-                </div>
-                <div class="form-group mx-sm-4">
-                  <label for="fechasalida">Fecha - Hora de Salida</label>
-                  <input
-                    type="text"
-                    name="fechasalida"
-                    id="fechasalida"
-                    class="form-control mt-2 mb-4"
-                    placeholder="Fecha y Hora de Salida"
-                  />
-                </div>
-                <div class="form-row">
-                  <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-primary mt-4 mb-4">
-                      Modificar Vuelo
-                    </button>
-                  </div>
-                </div>
-                <div class="form-group text-center mb-4" id="link-index">
-                  <a href="/index">Regresar a Inicio</a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+form li + li {
+  margin-top: 1.2em;
+}
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+label {
+  
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+input,
+textarea {
+  font: 1em sans-serif;
+  width: 250px;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  
+}
+
+input:focus,
+textarea:focus {
+  border-color: #000;
+  
+}
+
+textarea {
+  vertical-align: top;
+  height: 5em;
+}
+
+.button {
+  padding-left: 140px; 
+}
+
+button {
+  margin-left: .5em;
+}
+    </style>
+</head>
+<body>
+    <div style="color: bisque;">
+    
+    </div>
+    <form>
+        <h1 style="text-align: center;">Modificar Vuelo</h1>
+        <ul>
+         <li>
+           <label for="name">Código de vuelo:</label>
+           <input type="text" id="code" name="code" placeholder="AV9542" >
+         </li>
+         <li>
+           <label for="mail">Capacidad de vuelo:</label>
+           <input type="text" id="capacity" name="capacity" placeholder="390 Pasajeros">
+         </li>
+         <li>
+            <label for="name">Estado de vuelo:</label>
+            <input type="text" id="state" name="state" placeholder="En Itinerario">
+          </li>
+          <li>
+            <label for="name">Piloto Asignado:</label>
+            <input type="text" id="state" name="state" placeholder="Jhon Smith">
+          </li>
+          <li>
+            <label for="name">Origen:</label>
+            <input type="text" id="state" name="state" placeholder="Barranquilla">
+          </li>
+          <li>
+            <label for="name">Destino:</label>
+            <input type="text" id="state" name="state" placeholder="Bogotá">
+          </li>
+          <li>
+            <label for="name">Avion Asignado:</label>
+            <input type="text" id="state" name="state" placeholder="HKS-937">
+          </li>
+          <li>
+            <label for="name">Fecha - Hora Salida:</label>
+            <input type="text" id="state" name="state" placeholder="21/10/21 - 17:53">
+          </li>
+         <li>
+           <label for="msg">Mensaje:</label>
+           <textarea id="msg" name="user_message"></textarea>
+         </li>
+         <li class="button">
+            <button type="submit">Modificar</button>
+          </li>
+        </ul>
+        
+    </form>
+    
+</body>
 </html>

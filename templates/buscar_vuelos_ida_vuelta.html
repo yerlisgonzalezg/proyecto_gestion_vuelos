@@ -186,6 +186,89 @@
             <input type="submit" value="Buscar Vuelos" />
           </form>
         </div>
+    </header>
+    <section>
+        <header><nav></nav></header>
+        <div id="imagen"> 
+          <h2>Buscar vuelos</h2>
+        
+          
+          <div class="tab">
+            <a href="/buscar_vuelos_ida_vuelta"  style="text-decoration:none">Ida y vuelta</a>
+            <a href="/buscar_vuelos_ida"  style="text-decoration:none">Sólo ida</a>
+            
+            <!-- <button class="tablinks" action="/buscar_vuelos_ida_vuelta" type="submit">Ida y vuelta</button> -->
+            <!-- <button class="tablinks" onclick="openCity(event, 'ida')">Sólo ida</button> -->
+          </div>
+          <div>
+              <form action="{{ url_for('buscar_vuelos_ida_vuelta') }}" method="post">
+                  <label for="origen">Origen:</label>
+                  <input type="text" id="fname" name="origen">
+                  <label for="destino">Destino:</label>
+                  <input type="text" id="fname" name="destino">
+                  <label for="ida">Fecha de ida:</label>
+                  <input type="text" id="fname" name="ida">
+                  <label for="regreso">Fecha de regreso:</label>
+                  <input type="text" id="fname" name="regreso">
+                  <label for="pasajero">No. de pasajeros:</label>
+                  <input type="text" id="fname" name="pasajero">
+                  <input type="submit" value="Buscar Vuelos">
+                </form>
+          </div>
+          
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Origen</th>
+                  <th>Destino</th>
+                  <th>Fecha de ida</th>
+                  <th>Fecha de regreso</th>
+                  <th>Reservar vuelo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for vuelo in vuelos %}
+                      
+                        <td>{% print(vuelo[1]) %}</td>
+                        <td>{% print(vuelo[2]) %}</td>
+                        <td>{% print(vuelo[7]) %}</td>
+                        <td>{% print(vuelo[8]) %}</td>
+                        <td>
+                          <a href="/reservas">
+                            <button class="btn btn-warning"  >
+                              <i class="fas fa-plane-departure "></i>
+                            </button>
+                          </a>
+                        </td>
+                </tr>
+                      
+                    {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+        
+          <!-- <label for="" >{{ vuelos }}</label> -->
+        
+          {% with messages = get_flashed_messages() %} {% if messages %}
+                  <ul class="flashes">
+                    {% for message in messages %}
+                      <script>
+                        window.alert('{{ message }}')                                                        
+                      </script>
+                    {% endfor %}
+                  </ul>
+                  {% endif %} {% endwith %}
+        
+         
+        </div> 
+        
+        
+    
+    </section>
+    <footer>
 
         <div>
           <table class="table-buscar-vuelos"> 
