@@ -97,16 +97,15 @@ def reservar_vuelos(nombre, apellido, identificacion, email, id_usuario, origen,
     db.commit()
 
 
-def reservar_vuelos_ida(nombre, apellido, identificacion, email, id_usuario, origen, destino, tipo, ida, tiquetes, id_vuelo):
-    db = get_db()
-    db.execute(
-        'INSERT INTO reservas (nombre,apellido,identificacion,correo,id_usuario,ciudad_origen,ciudad_destino,tipo_vuelo,fecha_ida,n_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?,?) ',
-        (nombre, apellido, identificacion, email, id_usuario,
-         origen, destino, tipo, ida, tiquetes, id_vuelo)
-    )
-    db.commit()
+def usuarios_consulta():
+    sql = "SELECT * FROM usuarios"
+    conn = sql_connection()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    usuarios = cursor.fetchall()
+    return usuarios
 
-
+    
 def consultar_id_vuelo(id):
     db = get_db()
     cursor = db.execute(
