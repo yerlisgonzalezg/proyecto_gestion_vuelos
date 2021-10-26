@@ -87,15 +87,6 @@ def usuarios_consulta():
     return usuarios
 
     
-def usuarios_consulta():
-    sql = "SELECT * FROM usuarios"
-    conn = sql_connection()
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    usuarios = cursor.fetchall()
-    return usuarios
-
-    
 def reservar_vuelos(nombre,apellido,identificacion,email,id_usuario,origen,destino,tipo,ida,regreso,tiquetes,id_vuelo):
     db = get_db()
     db.execute(
