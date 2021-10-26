@@ -12,6 +12,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="icon" href="../static/img/aeropuerto.ico.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
     <header id="header">
@@ -40,7 +42,7 @@
                   <a class="nav-link active" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/crear_usuario">Usuarios</a>
+                  <a class="nav-link" href="/usuarios">Usuarios</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a
@@ -113,9 +115,9 @@
                 {%for vuelo in vuelos_salida %}
 
                 <tr>
-                  <th scope="row">{%print(vuelo[0]) %}</th>
+                  <th scope="row">{%print(vuelo[4]) %}</th>
                   <td>{%print(vuelo[2]) %}</td>
-                  <td>{%print(vuelo[4]) %}</td>
+                  <td>{%print(vuelo[5]) %}</td>
                   <td>{%print(vuelo[6]) %}</td>
                   <td>{%print(vuelo[3]) %}</td>
                 </tr>
@@ -139,10 +141,10 @@
               <tbody>
                 {%for vuelo in vuelos_llegada %}
                 <tr>
-                  <th scope="row">{%print(vuelo[0]) %}</th>
+                  <th scope="row">{%print(vuelo[4]) %}</th>
                   <td>{%print(vuelo[1]) %}</td>
-                  <td>{%print(vuelo[4]) %}</td>
                   <td>{%print(vuelo[5]) %}</td>
+                  <td>{%print(vuelo[6]) %}</td>
                   <td>{%print(vuelo[3]) %}</td>
                 </tr>
                 {%endfor %}

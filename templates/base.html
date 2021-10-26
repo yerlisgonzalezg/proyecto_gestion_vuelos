@@ -13,34 +13,35 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../static/css/style.css" />
-    <link rel="icon" href="../static/img/aeropuerto.ico.png" />
-    <title>Acceso denegado</title>
+    
+
+    <title>Usuario</title>
   </head>
-  <body>
-    <div>
-      <div class="acceso_denegado">
-        <img
-          src="../static/img/1._friday.gif"
-          class="img-fluid"
-          alt="Acceso denegado"
-        />
-        <a href="/inicio_usuario">Volver a inicio</a>
-      </div>
-    </div>
+  <body class="body-registro">
+    
+    <main>   
+      <section class="logo-registro">
+        <div class="container">
+          <div class="row justify-content-center pt-5 mt-5 ms-1">
+            <div class="col-md-4 col-lg text-center">
+              <img src="../static/img/aeropuerto.png" alt="Logo" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-registro">
+        {% block body %}
+        {% endblock %}
+      </section>
+    </main>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    
+   
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-
+    <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
   </body>
 </html>
