@@ -2,13 +2,13 @@ from flask import Flask
 from flask import render_template
 from flask import request, flash, redirect, url_for
 import os
-from utils.db import get_db, close_db
+from utils.db import get_db, close_db, sql_connection
 from utils.forms import*
 from utils.utils import isEmailValid, isPasswordValid, comprobarContraseñas, isEmailLoginValid, isPasswordLoginValid
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import session, g
 import functools
-from repository.data_repository import*
+from repository.data_repository import *
 
 
 app = Flask(__name__)
@@ -145,7 +145,7 @@ def cargar_usuario_registrado():
         g.user = None
     else:
         g.user = consultar_usuario_g(id_usuario)
-    print('g.user:', g.user)
+        
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
@@ -173,7 +173,7 @@ def crear_usuario():
                 nombre = request.form['nombre']
                 email = request.form['email']
                 password = request.form['password']
-                rol = "pilot"
+                rol = "user"
 
                 error = None
                 db = get_db()
@@ -198,7 +198,7 @@ def crear_usuario():
                     guardar_usuarios_pilot(
                         nombre, email, password_cifrado, rol)
 
-                    return redirect(url_for('login'))
+                    return redirect(url_for('usuarios'))
 
             return render_template("crear_usuario.html")
         except:
@@ -317,6 +317,65 @@ def calificar_vuelo():
 def comentarios():
     return render_template('comentarios.html')
 
+
+@app.route('/usuarios')
+@login_required
+def usuarios():
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        usuarios=usuarios_consulta()
+        return render_template('usuarios.html', usuarios=usuarios)
+    else:
+        return redirect(url_for('acceso_denegado'))
+    
+@app.route('/editar/<string:id>')
+@login_required
+def edit_usuario(id):
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        db = get_db()
+        cursor = db.execute(
+        'SELECT *  FROM usuarios WHERE idusuarios=?', 
+        (id,)).fetchall()
+        
+        return render_template('editar_usuario.html', usuarios=cursor)
+    else:
+        return redirect(url_for('acceso_denegado'))    
+
+@app.route('/update/<string:id>',methods=['GET', 'POST'])
+@login_required
+def update_usuario(id):
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        if request.method=='POST':
+            nombre=request.form['nombre']
+            email=request.form['email']
+            rol=request.form['rol']
+
+            db = get_db()
+            cursor = db.execute(
+            "UPDATE usuarios SET nombre = ?, correo = ?, rol =? WHERE idusuarios = ? ", 
+            (nombre, email, rol, id))
+            db.commit()
+            flash("Contacto actualizado")
+            return redirect(url_for('usuarios'))
+    else:
+        return redirect(url_for('acceso_denegado'))    
+
+@app.route('/eliminar/<string:id>')
+@login_required
+def eliminar_usuario(id):
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+            db = get_db()
+            cursor = db.execute(
+            "DELETE FROM usuarios WHERE idusuarios = ? ", 
+            ( id,))
+            db.commit()
+            flash("Contacto eliminado")
+            return redirect(url_for('usuarios'))
+    else:
+        return redirect(url_for('acceso_denegado'))
 
 @app.route('/inicio_usuario')
 @login_required
