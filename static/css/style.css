@@ -33,11 +33,12 @@ nav.navbar {
   object-fit: cover;
   filter: grayscale(70%);
 }
-#imagenes img {
-  max-height: 50vh;
+#imagenes img, h1 {
+  max-height: 45vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 
 #footer h6 {
@@ -69,7 +70,7 @@ nav.navbar {
 }
 
 .formulario-login,
-.formulario-registro {
+.formulario-registro, .formulario-reservas {
   background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 10px;
@@ -284,3 +285,91 @@ main .main-input .eye-icon,
 }
 
 /* CSS Buscar Vuelos
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+.body-vuelos, .body-buscar-vuelos, .vuelos-ida-vuelta {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 25px;
+}
+
+/* Style the buttons inside the tab */
+.tab a {
+  /*background-color: inherit;*/
+  float: left;
+  border: none;
+  border-radius: 0  10px 0 0;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  background-color: #1a6bd5;
+  color: white;
+}
+
+/* Change background color of buttons on hover */
+.tab a:hover {
+  background-color: rgb(147, 123, 255);
+}
+
+/* Create an active/current tablink class */
+/*.tab a.active {
+  background-color: #1a6bd5;
+  color: white;
+}*/
+
+/* Style the tab content */
+ /* Style the tab content */
+ .tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.table-buscar-vuelos {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+
+.header-vuelos a{
+  color: white;
+}
+
+#imagen-vuelos {
+  background: url(../img/pexels-aviones.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+#imagen-vuelos-ida-vuelta {
+  background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#imagen-vuelos-ida-vuelta {
+  background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+/*Estilos reservas*/
+
+.body-reservas {
+      height: 880px;
+      background-image: url("../img/pexels-andrea-piacquadio-842921.jpg");
+      background-size: cover;
+      background-repeat:no-repeat;
+      background-position: center center;
+    }
+
+.formulario-reservas ul li{
+   list-style: none;
+}

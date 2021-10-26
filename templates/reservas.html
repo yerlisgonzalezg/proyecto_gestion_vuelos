@@ -1,101 +1,135 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/estilos.css" />
-    <title>Aeropuerto Fabio León Bentley​</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" href="../static/img/aeropuerto.png" />
+
+    <title>Reservas</title>
   </head>
-  <body>
-    <h3>Aeropuerto Fabio León Bentley​</h3>
-    <h2>SISTEMA DE RESERVAS - AEROPUERTO FABIO LEÓN BENTLEY</h2>
-    <div id="mensaje"></div>
-    <form id="formulario" method="post" action="/reservas">
-      <ul>
-        <li>
-          <label for="nombre">Nombre Completo</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            placeholder="Nombre completo"
-            required
-          />
-        </li>
+  <body class="body-reservas">
+    <header id="header">
+        <div>
+            <nav class="navbar navbar-expand-lg fixed-top">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                  <img src="../static/img/aeropuerto.png" alt="logo" />
+                </a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href=""
+                        >SISTEMA DE RESERVAS - AEROPUERTO FABIO LEÓN BENTLEY</a
+                      >
+                    </li> 
+                  </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-font">
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/buscar_vuelos">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout">Cerrar sesión</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+    </header>
 
-        <li>
-          <label for="identificacion">identificacion</label>
-          <input
-            type="text"
-            id="identificacion"
-            name="identificacion"
-            placeholder="identificacion"
-            required
-          />
-        </li>
+    <main id="main">
+      <div class="container">
+        <div class="row justify-content-center pt-5 mt-5 ms-1">
+          <div class="col-md-4 formulario-reservas">
+            <form id="formulario" method="post" action="/reservas" onsubmit="validar_formulario_reservas();" >
+              <div class="form-group mx-sm-4">
+                <label for="nombre">Nombre </label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Nombre"
+                    required
+                    class="form-control mt-2 mb-4"
+                  />
+              </div>
+              <div class="form-group mx-sm-4">
+                <label for="apellido">Apellido</label>
+                <input
+                    type="text"
+                    id="apellido"
+                    name="apellido"
+                    placeholder="Apellido"
+                    required
+                    class="form-control mt-2 mb-4"
+                  />
+              </div>
+              <div class="form-group mx-sm-4">
+              <label for="identificacion">Identificacion</label>
+                  <input
+                  type="text"
+                  id="identificacion"
+                  name="identificacion"
+                  placeholder="identificacion"
+                  class="form-control mt-2 mb-4"
+                  required
+                />
+              </div>
+              <div class="form-group mx-sm-4">
+                <label for="correo">Correo Electrónico</label>
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="correo electronico"
+                    class="form-control mt-2 mb-4"
+                    required
+                  />
+              </div>
+    
+              <div class="form-row">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button type="submit" class="btn btn-primary mt-4 mb-4">
+                    Reservar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
 
-        <li>
-          <label for="paisorigen">Ciudad Origen</label>
-          <select id="paisorigen" name="paisorigen" required>
-            <option></option>
-            <option value="1">Barranquilla</option>
-            <option value="2">Bogotá</option>
-            <option value="3">Cartagena</option>
-            <option value="4">Santa Marta</option>
-          </select>
-        </li>
+    
 
-        <li>
-          <label for="paisdestino">Ciudad Destino</label>
-          <select id="paisdestino" name="paisdestino" required>
-            <option></option>
-            <option value="1">Barranquilla</option>
-            <option value="2">Bogotá</option>
-            <option value="3">Cartagena</option>
-            <option value="4">Santa Marta</option>
-          </select>
-        </li>
-
-        <li id="fecharegresoL" name="tipo">
-          <label for="tipo">Selecione el tipo</label>
-          Ida/Regreso
-          <input type="radio" id="tipo1" name="tipo" />
-          Sin Regreso
-          <input type="radio" id="tipo2" name="tipo" />
-        </li>
-
-        <li>
-          <label for="fechaida">Fecha ida</label>
-          <input type="date" id="fechaida" name="fechaida" required />
-        </li>
-
-        <li id="fecharegresoS">
-          <label for="fecharegreso">Fecha Regreso</label>
-          <input type="date" id="fecharegreso" name="fecharegreso" />
-        </li>
-
-        <li>
-          <label for="Ntiquetes">Numero de tiquetes</label>
-          <input type="number" id="Ntiquetes" name="Ntiquetes" />
-        </li>
-
-        <li>
-          <label for="idusuario">Usuario</label>
-          <input type="number" id="idusuario" name="idusuario" />
-        </li>
-
-        <li>
-          <label for="idvuelo">Vuelo</label>
-          <input type="number" id="idvuelo" name="idvuelo" />
-        </li>
-
-        <li>
-          <button type="submit">Reservar Tiquete</button>
-        </li>
-      </ul>
-    </form>
-
-    <script src="../static/js/validaciones.js" async defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
