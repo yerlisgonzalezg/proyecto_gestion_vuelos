@@ -76,4 +76,14 @@ def consultar_vuelos_ida(origen, destino, ida):
         (origen, destino, ida)).fetchall()
 
     return cursor
+
+    
+def usuarios_consulta():
+    sql = "SELECT * FROM usuarios"
+    conn = sql_connection()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    usuarios = cursor.fetchall()
+    return usuarios
+
     
