@@ -29,7 +29,7 @@ nav.navbar {
   font-size: 25px;
 }
 #main .carousel-inner img {
-  max-height: 70vh;
+  max-height: 85vh;
   object-fit: cover;
   filter: grayscale(70%);
 }
@@ -57,6 +57,7 @@ nav.navbar {
   background: #060358;
   color: white;
   height: 80px;
+  bottom: 0;
 }
 
 .form {
@@ -293,7 +294,7 @@ main .main-input .eye-icon,
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
-.body-vuelos, .body-buscar-vuelos, .vuelos-ida-vuelta {
+.body-vuelos, .body-buscar-vuelos, .vuelos-ida-vuelta, .calificar-vuelos {
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 25px;
 }
@@ -309,20 +310,22 @@ main .main-input .eye-icon,
   padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
-  background-color: #1a6bd5;
-  color: white;
+  color: black;
+  /* background-color: #1a6bd5;
+  color: white; */
 }
 
 /* Change background color of buttons on hover */
 .tab a:hover {
-  background-color: rgb(147, 123, 255);
+  background-color: #1a6bd5;
+  color: white;
 }
 
 /* Create an active/current tablink class */
-/*.tab a.active {
-  background-color: #1a6bd5;
-  color: white;
-}*/
+.tab a.active {
+  background-color:#008CBA;
+  color: orange;
+}
 
 /* Style the tab content */
  /* Style the tab content */
@@ -338,9 +341,12 @@ main .main-input .eye-icon,
   width: 100%;
 }
 
-
-
-.header-vuelos a{
+.header-vuelos a, .header-vuelos-ida a, .header-calificar-vuelos{
+  color: white;
+}
+    
+#calificar_vuelos, #buscar_vuelos_ida_vuelta, #buscar_vuelos_ida{
+  background-color: #1a6bd5;
   color: white;
 }
 
@@ -350,13 +356,13 @@ main .main-input .eye-icon,
   background-repeat: no-repeat;
 }
 #imagen-vuelos-ida-vuelta {
-  background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
+  background: url(../img/pexels-aviones.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
 }
 
 #imagen-vuelos-ida-vuelta {
-  background: url(https://cdn.pixabay.com/photo/2020/05/24/23/37/airplane-5216583_960_720.jpg);
+  background: url(../img/pexels-aviones.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
 }

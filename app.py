@@ -71,7 +71,7 @@ def registro():
         if 'id_user' in session and rol_user == 'user':
             return redirect(url_for('inicio_usuario'))
         if 'id_user' in session and rol_user == 'pilot':
-            return redirect(url_for('inicio_usuario'))
+            return redirect(url_for('piloto'))
         return render_template("registro.html")
     except:
         flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
@@ -119,7 +119,10 @@ def login():
                         rol_usuario = session.get('rol')
                         if rol_usuario == 'adm':
                             return redirect(url_for('dashboard'))
-                        return redirect(url_for('inicio_usuario'))
+                        if rol_usuario == 'user':
+                            return redirect(url_for('inicio_usuario'))
+                        if rol_usuario == 'pilot':
+                            return redirect(url_for('piloto'))
 
             return redirect(url_for('index'))
 
@@ -129,7 +132,7 @@ def login():
         if 'id_user' in session and rol == 'user':
             return redirect(url_for('inicio_usuario'))
         if 'id_user' in session and rol == 'pilot':
-            return redirect(url_for('inicio_usuario'))
+            return redirect(url_for('piloto'))
 
         return render_template("login.html")
     except:
@@ -240,7 +243,7 @@ def buscar_vuelos_ida_vuelta():
 
             vuelos = consultar_vuelos(origen, destino, ida, regreso)
 
-            return render_template("buscar_vuelos_ida_vuelta.html", vuelos=vuelos)
+            return render_template("buscar_vuelos_ida_vuelta.html", vuelos=vuelos, pasajero=pasajero)
 
     return render_template("buscar_vuelos_ida_vuelta.html")
 
@@ -265,17 +268,72 @@ def buscar_vuelos_ida():
             flash('El campo de No de pasajeros no debe estar vacío')
         if origen and destino and ida and pasajero:
             vuelos = consultar_vuelos_ida(origen, destino, ida)
-            return render_template("buscar_vuelos_ida.html", vuelos=vuelos)
+            return render_template("buscar_vuelos_ida.html", vuelos=vuelos, pasajero=pasajero)
 
     return render_template("buscar_vuelos_ida.html")
+
+
+@app.route('/calificar_vuelos', methods=['GET', 'POST'])
+@login_required
+def calificar_vuelos():
+    if request.method == 'POST':
+        ida = request.form['ida']
+        regreso = request.form['regreso']
+
+        if not ida:
+            flash('El campo de Fecha de ida no debe estar vacío')
+        if not regreso:
+            flash('El campo de Fecha de regreso no debe estar vacío')
+        if ida and regreso:
+            db = get_db()
+            vuelos = db.execute(
+                'SELECT *  FROM vuelos WHERE fecha_ida=? AND fecha_vuelta=?', (ida, regreso)).fetchall()
+
+            return render_template("calificar_vuelos.html", vuelos=vuelos)
+
+    return render_template("calificar_vuelos.html")
 
 
 @app.route('/agregar_vuelo', methods=['GET', 'POST'])
 @login_required
 def agregar_vuelos():
+
     rol_usuario = session.get('rol')
     if rol_usuario == 'adm':
-        return render_template('agregar_vuelo.html')
+        try:
+            if request.method == 'POST':
+                origen = request.form['origen']
+                destino = request.form['destino']
+                estado = request.form['estvuelo']
+                numero_vuelo = request.form['numvuelo']
+                puerta = request.form['puerta']
+                hora_llegada = request.form['horallegada']
+                hora_salida = request.form['horasalida']
+                fecha_salida = request.form['fechasalida']
+                fecha_vuelta = request.form['fechavuelta']
+                piloto = request.form['pilotoasig']
+                avion_asig = request.form['avionasig']
+                capacidad = request.form['capvuelo']
+
+                error = None
+                if error is not None:
+                    return render_template("agregar_vuelo.html")
+                else:
+                    agregar_vuelos(origen, destino, estado, numero_vuelo, puerta, hora_llegada,
+                                    hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
+                    # db = get_db()
+                    # db.execute(
+                    #     'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
+                    #     (origen, destino, estado, numero_vuelo, puerta, hora_llegada,
+                    #      hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
+                    # )
+                    # db.commit()
+                    return redirect(url_for('agregar_vuelo'))
+
+            return render_template('agregar_vuelo.html')
+        except:
+            flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
+            return render_template("agregar_vuelo.html")
     else:
         return redirect(url_for('acceso_denegado'))
 
@@ -300,16 +358,82 @@ def modificar_vuelos():
         return redirect(url_for('acceso_denegado'))
 
 
-@app.route('/reservas', methods=['GET', 'POST'])
+@app.route('/reservas/<id_vuelo>/<pasajero>', methods=['GET', 'POST'])
 @login_required
-def reservas():
-    return render_template('reservas.html')
+def reservas(id_vuelo, pasajero):
+
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        identificacion = request.form['identificacion']
+        email = request.form['email']
+
+        if not nombre:
+            flash('El campo nombre no debe estar vacío')
+        if not apellido:
+            flash('El campo apellido no debe estar vacío')
+        if not identificacion:
+            flash('El campo identificación no debe estar vacío')
+        if not email:
+            flash('El campo correo electrónico no debe estar vacío')
+
+        else:
+            db = get_db()
+            user = consultar_usuarios(email,)
+
+            session.clear()
+            session['id_user'] = user[0]
+            id_usuario = session.get('id_user')
+            tipo = "ida y vuelta"
+            vuelos = db.execute(
+                'SELECT * FROM vuelos WHERE idvuelos = ?', (id_vuelo,)
+            ).fetchone()
+
+            reservar_vuelos(nombre, apellido, identificacion, email, id_usuario,
+                            vuelos[1], vuelos[2], tipo, vuelos[8], vuelos[9], pasajero, vuelos[0])
+            return render_template('reservas.html', vuelos=vuelos, id_vuelo=id_vuelo, pasajero=pasajero)
+
+    vuelos = consultar_id_vuelo(id_vuelo,)
+    return render_template('reservas.html', vuelos=vuelos, id_vuelo=id_vuelo, pasajero=pasajero)
 
 
-@app.route('/calificar_vuelo', methods=['GET', 'POST'])
+@app.route('/reservas_ida/<id_vuelo>/<pasajero>', methods=['GET', 'POST'])
 @login_required
-def calificar_vuelo():
-    return render_template('calificar_vuelo.html')
+def reservas_ida(id_vuelo, pasajero):
+
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        identificacion = request.form['identificacion']
+        email = request.form['email']
+
+        if not nombre:
+            flash('El campo nombre no debe estar vacío')
+        if not apellido:
+            flash('El campo apellido no debe estar vacío')
+        if not identificacion:
+            flash('El campo identificación no debe estar vacío')
+        if not email:
+            flash('El campo correo electrónico no debe estar vacío')
+
+        else:
+            db = get_db()
+            user = consultar_usuarios(email,)
+
+            session.clear()
+            session['id_user'] = user[0]
+            id_usuario = session.get('id_user')
+            tipo = "ida"
+            vuelos = db.execute(
+                'SELECT * FROM vuelos WHERE idvuelos = ?', (id_vuelo,)
+            ).fetchone()
+            
+            reservar_vuelos_ida(nombre, apellido, identificacion, email, id_usuario,
+                                vuelos[1], vuelos[2], tipo, vuelos[8], pasajero, vuelos[0])
+            return render_template('reservas_ida.html', vuelos=vuelos, id_vuelo=id_vuelo, pasajero=pasajero)
+
+    vuelos = consultar_id_vuelo(id_vuelo,)
+    return render_template('reservas_ida.html', vuelos=vuelos, id_vuelo=id_vuelo, pasajero=pasajero)
 
 
 @app.route('/comentarios', methods=['GET', 'POST'])
@@ -322,6 +446,12 @@ def comentarios():
 @login_required
 def inicio_usuario():
     return render_template('inicio_usuario.html')
+
+
+@app.route('/piloto')
+@login_required
+def piloto():
+    return render_template('piloto.html')
 
 
 @app.route('/acceso_denegado')

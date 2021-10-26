@@ -72,23 +72,55 @@ def consultar_vuelos(origen, destino, ida, regreso):
 def consultar_vuelos_ida(origen, destino, ida):
     db = get_db()
     cursor = db.execute(
-        'SELECT *  FROM vuelos WHERE origen=? AND destino=? AND fecha_ida=?', 
+        'SELECT *  FROM vuelos WHERE origen=? AND destino=? AND fecha_ida=?',
         (origen, destino, ida)).fetchall()
 
     return cursor
-    
-def reservar_vuelos(nombre,apellido,identificacion,email,id_usuario,origen,destino,tipo,ida,regreso,tiquetes,id_vuelo):
+
+
+def calificar_vuelos(ida, regreso):
+    db = get_db()
+    cursor = db.execute(
+        'SELECT *  FROM vuelos WHERE fecha_ida=? AND fecha_vuelta=?',
+        (ida, regreso)).fetchall()
+
+    return cursor
+
+
+def reservar_vuelos(nombre, apellido, identificacion, email, id_usuario, origen, destino, tipo, ida, regreso, tiquetes, id_vuelo):
     db = get_db()
     db.execute(
-        'INSERT INTO reservas (nombre,apellido,identificacion,email,id_usuario,ciudad_origen,ciudad_destino,tipo_vuelo,fecha_ida,fecha_regreso,n_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?,?) ',
-        (nombre,apellido,identificacion,email,id_usuario,origen,destino,tipo,ida,regreso,tiquetes,id_vuelo)
+        'INSERT INTO reservas (nombre,apellido,identificacion,correo,id_usuario,ciudad_origen,ciudad_destino,tipo_vuelo,fecha_ida,fecha_regreso,n_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
+        (nombre, apellido, identificacion, email, id_usuario,
+         origen, destino, tipo, ida, regreso, tiquetes, id_vuelo)
     )
     db.commit()
 
-def agregar_vuelos(origen,destino,estado,vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad):
+
+def reservar_vuelos_ida(nombre, apellido, identificacion, email, id_usuario, origen, destino, tipo, ida, tiquetes, id_vuelo):
     db = get_db()
     db.execute(
-        'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?) ',
-        (origen,destino,estado,vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad)
+        'INSERT INTO reservas (nombre,apellido,identificacion,correo,id_usuario,ciudad_origen,ciudad_destino,tipo_vuelo,fecha_ida,n_tiquetes,id_vuelo) VALUES (?,?,?,?,?,?,?,?,?,?,?) ',
+        (nombre, apellido, identificacion, email, id_usuario,
+         origen, destino, tipo, ida, tiquetes, id_vuelo)
+    )
+    db.commit()
+
+
+def consultar_id_vuelo(id):
+    db = get_db()
+    cursor = db.execute(
+        'SELECT * FROM vuelos WHERE idvuelos = ?', (id,)
+    ).fetchone()
+
+    return cursor
+
+
+def agregar_vuelos(origen, destino, estado, vuelo, gate, hora_llegada, hora_salida, fecha_ida, fecha_vuelta, piloto, avion, capacidad):
+    db = get_db()
+    db.execute(
+        'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
+        (origen, destino, estado, vuelo, gate, hora_llegada,
+         hora_salida, fecha_ida, fecha_vuelta, piloto, avion, capacidad)
     )
     db.commit()
