@@ -117,7 +117,7 @@ def consulta_vuelos():
 def agregar_vuelos(origen, destino, estado, vuelo, gate, hora_llegada, hora_salida, fecha_ida, fecha_vuelta, piloto, avion, capacidad):
     db = get_db()
     db.execute(
-        'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
+        'INSERT INTO vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
         (origen, destino, estado, vuelo, gate, hora_llegada,
          hora_salida, fecha_ida, fecha_vuelta, piloto, avion, capacidad)
     )

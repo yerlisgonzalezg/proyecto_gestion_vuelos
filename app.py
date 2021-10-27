@@ -318,8 +318,7 @@ def agregar_vuelo():
                 if error is not None:
                     return render_template("vuelos.html")
                 else:
-                    agregar_vuelos(origen, destino, estado, numero_vuelo, puerta, hora_llegada,
-                                   hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
+                    agregar_vuelos(origen, destino, estado, numero_vuelo, puerta, hora_llegada, hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
                     # db = get_db()
                     # db.execute(
                     #     'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
