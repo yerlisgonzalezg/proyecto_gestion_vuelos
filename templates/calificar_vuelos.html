@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="icon" href="{{ url_for('static', filename='img/aeropuerto.png') }}" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <title>Calificar vuelos</title>
+
+    <style>
+          th, td {
+            text-align: center;
+            padding: 8px;
+          }
+            
+          tr:nth-child(even){background-color: #f2f2f2}
+          
+          th {
+            background-color: #1a6bd5;
+            color: white;
+          }
+          
+          tr:nth-child(even) {background-color: #f2f2f2;}
+          tr:hover {background-color: lightblue;}
+        
+          input[type=text] {
+            width: 9.5%;
+            box-sizing: border-box;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-position: 10px 10px; 
+            background-repeat: no-repeat;
+            outline: none;
+            transition: width 0.4s ease-in-out;
+          }
+          
+          input[type=text]:focus {
+            background-color: lightblue;
+            width: 10%;
+          }
+        
+          input[type=submit]{
+            color: white;
+            background-color:#1a6bd5;
+            border-radius: 5px;
+          }
+
+          #form {
+            width: 250px;
+            margin: 0 auto;
+            height: 50px;
+          }
+          
+          #form p {
+            text-align: center;
+          }
+          
+          #form label {
+            font-size: 20px;
+          }
+          
+          input[type="radio"] {
+            display: none;
+          }
+               
+          .clasificacion {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+          }
+          
+          input[type="radio"]:checked ~ label {
+            color: orange;
+          }
+    
+        </style>
+
+  </head>
+  <body class="calificar-vuelos">
+    
+    <header class="header-vuelos-ida">
+      <div>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <img src="../static/img/aeropuerto.png" alt="logo" width="50px" />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                {% if g.user and session.get('rol') == 'user'  %}
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/inicio_usuario">Inicio</a>
+                  </li>
+                {% endif %}
+                {% if g.user and session.get('rol') == 'adm'  %}
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/dashboard">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/crear_usuario">Usuarios</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="true"
+                    >
+                      Vuelos
+                    </a>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                      id="dropdown"
+                    >
+                      <li>
+                        <a class="dropdown-item" href="/buscar_vuelos"
+                          >Buscar vuelos</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="/agregar_vuelo"
+                          >Agregar vuelos</a
+                        >
+                      </li>
+                      <li><hr class="dropdown-divider" /></li>
+                      <li>
+                        <a class="dropdown-item" href="/modificar_vuelos"
+                          >Editar vuelos</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="/eliminar_vuelos"
+                          >Eliminar vuelos</a
+                        >
+                      </li>
+                    </ul>
+                {% endif %}
+                {% if g.user and session.get('rol') == 'user'  %}
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/buscar_vuelos">Buscar vuelos</a>
+                  </li>
+                {% endif %}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/comentarios">Comentarios</a>
+                </li>
+              </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-font">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Cerrar sesión</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+<section>
+    <div id="imagen-vuelos"> 
+        <h2>Calificar vuelos</h2>
+
+        <div class="tab">
+          <a href="/buscar_vuelos_ida_vuelta"  style="text-decoration:none">Ida y vuelta</a>
+          <a href="/buscar_vuelos_ida"  style="text-decoration:none">Sólo ida</a>
+          <a href="/calificar_vuelos"  style="text-decoration:none" id="calificar_vuelos">Calificar vuelos</a>
+          
+          <!-- <button class="tablinks" action="/buscar_vuelos_ida_vuelta" type="submit">Ida y vuelta</button> -->
+          <!-- <button class="tablinks" onclick="openCity(event, 'ida')">Sólo ida</button> -->
+        </div>
+       
+        <div>
+          <form action="{{ url_for('calificar_vuelos') }}" method="post">
+              <label for="ida">Fecha de ida:</label>
+              <input type="date" id="fname" name="ida">              
+              <label for="regreso">Fecha de regreso:</label>
+              <input type="date" id="fname" name="regreso">
+              <input type="submit" value="Ver Vuelos" class="ver btn btn-primary">
+            </form>
+      </div>
+
+
+      <div class="col-12"><br>
+        <div class="card">
+            
+                <div class="card-body">
+                    <div class="col-12">
+                        <table  class="table-buscar-vuelos" id="tabla_calificacion">
+                            <thead>
+                                <tr>
+                                  <th>Origen</th>
+                                  <th>Destino</th>
+                                  <th>Fecha de ida</th>
+                                  <th>Fecha de regreso</th>
+                                  <th>Calificación</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  {% for vuelo in vuelos %}
+                                      
+                                        <td>{% print(vuelo[1]) %}</td>
+                                        <td>{% print(vuelo[2]) %}</td>
+                                        <td>{% print(vuelo[8]) %}</td>
+                                        <td>{% print(vuelo[9]) %}</td>
+                                        <td>
+                                            <span class= "fa fa-star" onclick = "calificar(this)" style="cursor: pointer;" id="1{{ vuelo[0] }}"></span>
+                                            <span class= "fa fa-star" onclick = "calificar(this)" style="cursor: pointer;" id="2{{ vuelo[0] }}"></span>
+                                            <span class= "fa fa-star" onclick = "calificar(this)" style="cursor: pointer;" id="3{{ vuelo[0] }}"></span>
+                                            <span class= "fa fa-star" onclick = "calificar(this)" style="cursor: pointer;" id="4{{ vuelo[0] }}"></span>
+                                            <span class= "fa fa-star" onclick = "calificar(this)" style="cursor: pointer;" id="5{{ vuelo[0] }}"></span>
+                                        </td>
+                                        <td>
+                                            <button class="ver btn btn-primary">Calificar</button>
+                                        </td>
+                                </tr>
+                                          
+                                    {% endfor %}
+                                    
+                                  </tbody>
+                        </table>
+                        
+                        </div>
+            
+                            <!-- <label for="" >{{ vuelos }}</label> -->
+                        
+                            {% with messages = get_flashed_messages() %} {% if messages %}
+                                    <ul class="flashes">
+                                    {% for message in messages %}
+                                        <script>
+                                        window.alert('{{ message }}')                                                        
+                                        </script>
+                                    {% endfor %}
+                                    </ul>
+                                    {% endif %} {% endwith %}
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+  </body>
+<!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    <script>
+        var contador;
+        function calificar(item){
+            console.log(item);
+            contador=item.id[0];//captura el primer caracter
+            let nombre = item.id.substring(1);//Captura toda la cadena excepto el primer caracter
+            for(let i=0;i<5;i++){
+                if(i<contador){
+                    document.getElementById((i+1)+nombre).style.color="orange";
+                }else{
+                    document.getElementById((i+1)+nombre).style.color="black";
+                }
+
+            }
+        }
+
+        function mensaje(){
+            alert("Gracias por caliificar nuestro servicio, usted nos dio "+contador+" estrellas.")
+        }
+    </script>
+
+</html>
