@@ -13,13 +13,16 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../static/css/style.css" />
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../static/img/aeropuerto.ico.png" />
 
     <title>Usuario</title>
   </head>
   <body class="body-registro">
-    
-    <main>   
+    <main>
       <section class="logo-registro">
         <div class="container">
           <div class="row justify-content-center pt-5 mt-5 ms-1">
@@ -30,18 +33,22 @@
         </div>
       </section>
       <section class="section-registro">
-        {% block body %}
-        {% endblock %}
+        {% block body %} {% endblock %}
       </section>
     </main>
 
-    
-   
-
     <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

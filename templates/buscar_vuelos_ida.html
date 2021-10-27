@@ -195,6 +195,7 @@
             <table  class="table-buscar-vuelos" id="tabla_calificacion">
               <thead class="thead">
                 <tr>
+                  <th>Código Vuelo</th>
                   <th>Origen</th>
                   <th>Destino</th>
                   <th>Fecha de ida</th>
@@ -205,6 +206,7 @@
                 <tr>
                   {% for vuelo in vuelos %}
 
+                  <td>{% print(vuelo[4]) %}</td>
                   <td>{% print(vuelo[1]) %}</td>
                   <td>{% print(vuelo[2]) %}</td>
                   <td>{% print(vuelo[8]) %}</td>
