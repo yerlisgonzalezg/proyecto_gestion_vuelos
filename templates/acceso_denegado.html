@@ -24,7 +24,11 @@
           class="img-fluid"
           alt="Acceso denegado"
         />
+        {% if g.user and session.get('rol') == 'user' %}
         <a href="/inicio_usuario">Volver a inicio</a>
+        {% endif %} {% if g.user and session.get('rol') == 'pilot' %}
+        <a href="/piloto">Volver a inicio</a>
+        {% endif %}
       </div>
     </div>
 
