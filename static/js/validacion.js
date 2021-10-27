@@ -125,3 +125,28 @@ function validar_formulario_agregar_vuelo() {
         return false
     } 
 }
+
+function informacion_vuelo (id,pasajero){
+    // window.open("/reservas/"+id+""+"/"+pasajero+"","ventana3","width=500,height=700,scrollbars=NO")
+    window.open("/reservas/"+id+""+"/"+pasajero+"",'_blank')
+    // window.open(url, '_blank');
+    
+ }
+ function informacion_vuelo_ida (id,pasajero){
+    window.open("/reservas_ida/"+id+""+"/"+pasajero+"",'_blank')
+ }
+
+
+const btnDelete = document.querySelectorAll('.btn-delete')
+if (btnDelete) {
+    const btnArray=Array.from(btnDelete);
+    btnArray.forEach((btn) =>{
+        btn.addEventListener('click', (e) => {
+            if(!confirm('Estas seguro de querer eliminar este usuario?')){
+                e.preventDefault();
+            }
+        });
+    });
+    
+    
+}
