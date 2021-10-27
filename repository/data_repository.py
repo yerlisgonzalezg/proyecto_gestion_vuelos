@@ -105,6 +105,14 @@ def usuarios_consulta():
     usuarios = cursor.fetchall()
     return usuarios
 
+def consulta_vuelos():
+    sql = "SELECT * FROM vuelos"
+    conn = sql_connection()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    vuelos = cursor.fetchall()
+    return vuelos
+
 
 def agregar_vuelos(origen, destino, estado, vuelo, gate, hora_llegada, hora_salida, fecha_ida, fecha_vuelta, piloto, avion, capacidad):
     db = get_db()
