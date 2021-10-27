@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
 
-    <title>Agregar Vuelo</title>
+    <title>Modificar Vuelo</title>
   </head>
   <body class="body-registro">
     <main>
@@ -35,11 +35,11 @@
               <form
                 action="dashboard.html"
                 method="POST"
-                name="formAgregarVuelo"
-                onsubmit="validar_formulario_agregar_vuelo();"
+                name="formEliminarVuelo"
+                onsubmit=""
               >
                 <div class="form-group text-center mb-5">
-                  <h2>Agregar Vuelo</h2>
+                  <h2>Eliminar Vuelo</h2>
                 </div>
                 <div class="form-group mx-sm-4">
                   <label for="origen">Origen</label>
@@ -48,7 +48,8 @@
                     name="origen"
                     id="origen"
                     class="form-control mt-2 mb-4"
-                    placeholder="Ciudad de Origen"
+                    placeholder="Mitú - COL"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -58,7 +59,8 @@
                     name="destino"
                     id="destino"
                     class="form-control mt-2 mb-4"
-                    placeholder="Ciudad de Destino"
+                    placeholder="Miami - USA"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -68,7 +70,8 @@
                     name="estvuelo"
                     id="estvuelo"
                     class="form-control mt-2 mb-4"
-                    placeholder="Estado de Vuelo"
+                    placeholder="A tiempo"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -78,7 +81,8 @@
                     name="numvuelo"
                     id="numvuelo"
                     class="form-control mt-2 mb-4"
-                    placeholder="Numero de Vuelo"
+                    placeholder="1"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -88,47 +92,52 @@
                     name="puerta"
                     id="puerta"
                     class="form-control mt-2 mb-4"
-                    placeholder="Puerta"
+                    placeholder="PE01"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
                   <label for="horallegada">Hora Llegada</label>
                   <input
-                    type="time"
+                    type="text"
                     name="horallegada"
                     id="horallegada"
                     class="form-control mt-2 mb-4"
-                    placeholder="Hora Llegada"
+                    placeholder="06:00"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
                   <label for="horasalida">Hora Salida</label>
                   <input
-                    type="time"
+                    type="text"
                     name="horasalida"
                     id="horasalida"
                     class="form-control mt-2 mb-4"
-                    placeholder="Hora Salida"
+                    placeholder="05:00"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
                   <label for="fechasalida">Fecha Salida</label>
                   <input
-                    type="date"
+                    type="text"
                     name="fechasalida"
                     id="fechasalida"
                     class="form-control mt-2 mb-4"
-                    placeholder="Fecha de Salida"
+                    placeholder="2021-10-20"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
                   <label for="fechavuelta">Fecha vuelta</label>
                   <input
-                    type="date"
+                    type="text"
                     name="fechavuelta"
                     id="fechavuelta"
                     class="form-control mt-2 mb-4"
-                    placeholder="Fecha de Vuelta"
+                    placeholder="2021-11-20"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -138,7 +147,8 @@
                     name="pilotoasig"
                     id="pilotoasig"
                     class="form-control mt-2 mb-4"
-                    placeholder="Piloto Asignado"
+                    placeholder="2"
+                    disabled
                   />
                 </div>
 
@@ -149,7 +159,8 @@
                     name="avionasig"
                     id="avionasig"
                     class="form-control mt-2 mb-4"
-                    placeholder="Avión Asignado"
+                    placeholder="A101"
+                    disabled
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -159,14 +170,15 @@
                     name="capvuelo"
                     id="capvuelo"
                     class="form-control mt-2 mb-4"
-                    placeholder="Capacidad de Vuelo"
+                    placeholder="100"
+                    disabled
                   />
                 </div>
 
                 <div class="form-row">
                   <div class="d-grid gap-2 col-6 mx-auto">
                     <button type="submit" class="btn btn-primary mt-4 mb-4">
-                      Agregar Vuelo
+                      Eliminar Vuelo
                     </button>
                   </div>
                 </div>

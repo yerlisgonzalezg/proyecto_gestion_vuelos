@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
 
-    <title>Agregar Vuelo</title>
+    <title>Modificar Vuelo</title>
   </head>
   <body class="body-registro">
     <main>
@@ -35,11 +35,11 @@
               <form
                 action="dashboard.html"
                 method="POST"
-                name="formAgregarVuelo"
+                name="formModificarVuelo"
                 onsubmit="validar_formulario_agregar_vuelo();"
               >
                 <div class="form-group text-center mb-5">
-                  <h2>Agregar Vuelo</h2>
+                  <h2>Modificar Vuelo</h2>
                 </div>
                 <div class="form-group mx-sm-4">
                   <label for="origen">Origen</label>
@@ -48,7 +48,7 @@
                     name="origen"
                     id="origen"
                     class="form-control mt-2 mb-4"
-                    placeholder="Ciudad de Origen"
+                    placeholder="Barranquilla - COL"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -58,7 +58,7 @@
                     name="destino"
                     id="destino"
                     class="form-control mt-2 mb-4"
-                    placeholder="Ciudad de Destino"
+                    placeholder="Mitú - COL"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -68,7 +68,7 @@
                     name="estvuelo"
                     id="estvuelo"
                     class="form-control mt-2 mb-4"
-                    placeholder="Estado de Vuelo"
+                    placeholder="Retrasado"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -78,7 +78,7 @@
                     name="numvuelo"
                     id="numvuelo"
                     class="form-control mt-2 mb-4"
-                    placeholder="Numero de Vuelo"
+                    placeholder="3"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -88,7 +88,7 @@
                     name="puerta"
                     id="puerta"
                     class="form-control mt-2 mb-4"
-                    placeholder="Puerta"
+                    placeholder="PE08"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -98,7 +98,7 @@
                     name="horallegada"
                     id="horallegada"
                     class="form-control mt-2 mb-4"
-                    placeholder="Hora Llegada"
+                    Value="16:00"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -108,7 +108,7 @@
                     name="horasalida"
                     id="horasalida"
                     class="form-control mt-2 mb-4"
-                    placeholder="Hora Salida"
+                    value="07:00"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -118,7 +118,7 @@
                     name="fechasalida"
                     id="fechasalida"
                     class="form-control mt-2 mb-4"
-                    placeholder="Fecha de Salida"
+                    value="20/10/2021"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -128,7 +128,7 @@
                     name="fechavuelta"
                     id="fechavuelta"
                     class="form-control mt-2 mb-4"
-                    placeholder="Fecha de Vuelta"
+                    value="20/11/2021"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -138,7 +138,7 @@
                     name="pilotoasig"
                     id="pilotoasig"
                     class="form-control mt-2 mb-4"
-                    placeholder="Piloto Asignado"
+                    placeholder="3"
                   />
                 </div>
 
@@ -149,7 +149,7 @@
                     name="avionasig"
                     id="avionasig"
                     class="form-control mt-2 mb-4"
-                    placeholder="Avión Asignado"
+                    placeholder="A103"
                   />
                 </div>
                 <div class="form-group mx-sm-4">
@@ -159,14 +159,14 @@
                     name="capvuelo"
                     id="capvuelo"
                     class="form-control mt-2 mb-4"
-                    placeholder="Capacidad de Vuelo"
+                    placeholder="180"
                   />
                 </div>
 
                 <div class="form-row">
                   <div class="d-grid gap-2 col-6 mx-auto">
                     <button type="submit" class="btn btn-primary mt-4 mb-4">
-                      Agregar Vuelo
+                      Modificar Vuelo
                     </button>
                   </div>
                 </div>
