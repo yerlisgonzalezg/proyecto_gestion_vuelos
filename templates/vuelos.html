@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_vuelos.html' %}
 
 {% block body %}
   <body class="body-registro">
@@ -79,7 +79,7 @@
       <section class="section-registro">
         <div class="container">
           <div class="row justify-content-center "> 
-            <div class="table-responsive col-md-6 col-lg-10 ">
+            <div class="table-responsive col-md-6 col-lg-12 ">
               {% with messages = get_flashed_messages() %} {% if messages %}
                 <ul class="flashes">
                 {% for message in messages %}
@@ -91,32 +91,48 @@
                 </ul>
               {% endif %} {% endwith %}
                 <div class="container mt-2 mb-2 text-end">
-                    <a href="/crear_usuario" class="fs-5 btn btn-light">Crear usuario</a>
+                    <a href="/agregar_vuelo" class="fs-5 btn btn-light">Crear vuelo</a>
                 </div>
                 <table class="table table-bordered border-light" >
                     <thead class="table-dark ">
                       <tr >
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Rol</th>
+                        <th scope="col">numero_vuelo</th>
+                        <th scope="col">origen</th>
+                        <th scope="col">destino</th>
+                        <th scope="col">estado</th>
+                        
+                        <th scope="col">gate</th>
+                        <th scope="col">hora_llegada</th>
+                        <th scope="col">hora_salida</th>
+                        <th scope="col">fecha_ida</th>
+                        <th scope="col">fecha_vuelta</th>
+                        <th scope="col">piloto</th>
+                        <th scope="col">avion</th>
+                        <th scope="col">capacidad</th>
                         <th colspan="2" class="table-dark text-center" >Opciones</th>
-
-                        
-                        
                       </tr>
                     </thead>
                     <tbody class="table-dark"> 
-                      {%for usuario in usuarios %}
+                      {%for vuelo in vuelos %}
       
                       <tr>
-                        <th scope="row">{%print(usuario[1]) %}</th>
-                        <td>{%print(usuario[2]) %}</td>
-                        <td>{%print(usuario[4]) %}</td>
+                        <th scope="row">{%print(vuelo[4]) %}</th>
+                        <td>{%print(vuelo[1]) %}</td>
+                        <td>{%print(vuelo[2]) %}</td>
+                        <td>{%print(vuelo[3]) %}</td>
+                        <td>{%print(vuelo[5]) %}</td>
+                        <td>{%print(vuelo[6]) %}</td>
+                        <td>{%print(vuelo[7]) %}</td>
+                        <td>{%print(vuelo[8]) %}</td>
+                        <td>{%print(vuelo[9]) %}</td>
+                        <td>{%print(vuelo[10]) %}</td>
+                        <td>{%print(vuelo[11]) %}</td>
+                        <td>{%print(vuelo[12]) %}</td>
                         <td class="text-center">
-                            <a class="btn btn-warning " href="/editar/{{usuario[0]}}">editar</a>
+                            <a class="btn btn-warning " href="/modificar_vuelos/{{vuelo[0]}}">editar</a>
                         </td >
                         <td class="text-center">
-                            <a class="btn btn-danger btn-delete" href="/eliminar/{{usuario[0]}}">eliminar</a>
+                            <a class="btn btn-danger btn-delete" href="/eliminar_vuelos/{{vuelo[0]}}">X</a>
                         </td>
                         
                       </tr>

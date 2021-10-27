@@ -295,31 +295,30 @@ def calificar_vuelos():
 
 @app.route('/agregar_vuelo', methods=['GET', 'POST'])
 @login_required
-def agregar_vuelos():
+def agregar_vuelo():
 
     rol_usuario = session.get('rol')
     if rol_usuario == 'adm':
         try:
             if request.method == 'POST':
-                origen = request.form['origen']
-                destino = request.form['destino']
-                estado = request.form['estvuelo']
-                numero_vuelo = request.form['numvuelo']
-                puerta = request.form['puerta']
-                hora_llegada = request.form['horallegada']
-                hora_salida = request.form['horasalida']
-                fecha_salida = request.form['fechasalida']
-                fecha_vuelta = request.form['fechavuelta']
-                piloto = request.form['pilotoasig']
-                avion_asig = request.form['avionasig']
-                capacidad = request.form['capvuelo']
+                origen= request.form['origen']
+                destino= request.form['destino']
+                estado= request.form['estado']
+                numero_vuelo= request.form['numero_vuelo']
+                puerta= request.form['gate'] 
+                hora_llegada= request.form['hora_llegada']
+                hora_salida= request.form['hora_salida']
+                fecha_salida= request.form['fecha_ida']
+                fecha_vuelta= request.form['fecha_vuelta']
+                piloto= request.form['piloto']
+                avion_asig= request.form['avion']
+                capacidad= request.form['capacidad']
 
                 error = None
                 if error is not None:
-                    return render_template("agregar_vuelo.html")
+                    return render_template("vuelos.html")
                 else:
-                    agregar_vuelos(origen, destino, estado, numero_vuelo, puerta, hora_llegada,
-                                   hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
+                    agregar_vuelos(origen, destino, estado, numero_vuelo, puerta, hora_llegada, hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
                     # db = get_db()
                     # db.execute(
                     #     'INSERT INTO Vuelos (origen,destino,estado,numero_vuelo,gate,hora_llegada,hora_salida,fecha_ida,fecha_vuelta,piloto,avion,capacidad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ',
@@ -327,12 +326,12 @@ def agregar_vuelos():
                     #      hora_salida, fecha_salida, fecha_vuelta, piloto, avion_asig, capacidad)
                     # )
                     # db.commit()
-                    return redirect(url_for('agregar_vuelo'))
+                    return redirect(url_for('vuelos'))
 
             return render_template('agregar_vuelo.html')
         except:
             flash("¡Ups! Ha ocurrido un error, intentelo de nuevo.")
-            return render_template("agregar_vuelo.html")
+            return redirect(url_for('vuelos'))
     else:
         return redirect(url_for('acceso_denegado'))
 
@@ -500,6 +499,76 @@ def eliminar_usuario(id):
         db.commit()
         flash("Contacto eliminado")
         return redirect(url_for('usuarios'))
+    else:
+        return redirect(url_for('acceso_denegado'))
+
+
+@app.route('/vuelos')
+@login_required
+def vuelos():
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        vuelos=consulta_vuelos()
+        return render_template('vuelos.html', vuelos=vuelos)
+    else:
+        return redirect(url_for('acceso_denegado'))
+
+@app.route('/modificar_vuelos/<string:id>')
+@login_required
+def edit_vuelos(id):
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        db = get_db()
+        cursor = db.execute(
+            'SELECT *  FROM vuelos WHERE idvuelos=?',
+            (id,)).fetchall()
+
+        return render_template('modificar_vuelos.html', vuelos=cursor)
+    else:
+        return redirect(url_for('acceso_denegado'))
+
+@app.route('/update_vuelo/<string:id>', methods=['GET', 'POST'])
+@login_required
+def update_vuelo(id):
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        if request.method == 'POST':
+            origen= request.form['origen']
+            destino= request.form['destino']
+            estado= request.form['estado']
+            vuelo= request.form['numero_vuelo']
+            gate= request.form['gate'] 
+            hora_llegada= request.form['hora_llegada']
+            hora_salida= request.form['hora_salida']
+            fecha_ida= request.form['fecha_ida']
+            fecha_vuelta= request.form['fecha_vuelta']
+            piloto= request.form['piloto']
+            avion= request.form['avion']
+            capacidad= request.form['capacidad']
+            
+
+            db = get_db()
+            cursor = db.execute(
+                "UPDATE vuelos SET origen = ?, destino = ?, estado =?, numero_vuelo= ?, gate= ?, hora_llegada= ?, hora_salida= ?, fecha_ida= ?, fecha_vuelta= ?, piloto= ?, avion= ?, capacidad= ? WHERE idvuelos = ? ",
+                (origen, destino, estado, vuelo, gate, hora_llegada, hora_salida, fecha_ida, fecha_vuelta, piloto, avion, capacidad, id))
+            db.commit()
+            flash("Vuelo se ha actualizado")
+            return redirect(url_for('vuelos'))
+    else:
+        return redirect(url_for('acceso_denegado'))
+
+@app.route('/eliminar_vuelos/<string:id>')
+@login_required
+def eliminar_vuelo(id):
+    rol_usuario = session.get('rol')
+    if rol_usuario == 'adm':
+        db = get_db()
+        cursor = db.execute(
+            "DELETE FROM vuelos WHERE idvuelos = ? ",
+            (id,))
+        db.commit()
+        flash("El Vuelo ha sido eliminado")
+        return redirect(url_for('vuelos'))
     else:
         return redirect(url_for('acceso_denegado'))
 
