@@ -241,7 +241,7 @@ def buscar_vuelos_ida_vuelta():
         if origen and destino and ida and regreso and pasajero:
 
             vuelos = consultar_vuelos(origen, destino, ida, regreso)
-
+            
             return render_template("buscar_vuelos_ida_vuelta.html", vuelos=vuelos, pasajero=pasajero)
 
     return render_template("buscar_vuelos_ida_vuelta.html")

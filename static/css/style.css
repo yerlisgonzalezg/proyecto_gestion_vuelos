@@ -91,6 +91,7 @@ h1 {
   background-image: url(../img/pexels-ekky-wicaksono-2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 #link-login a,

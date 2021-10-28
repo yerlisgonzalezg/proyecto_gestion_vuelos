@@ -186,9 +186,33 @@
           <div class="input-vuelos">
             <form action="{{ url_for('buscar_vuelos_ida') }}" method="post">
               <label for="origen">Origen:</label>
-              <input type="text" id="fname" name="origen" />
+              <!-- <input type="text" id="fname" name="origen" /> -->
+              <input list="origen" id="fname" name="origen"/>
+                <datalist id="origen">
+                  <option value="Mitu"></option>
+                  <option value="Barranquilla"></option>
+                  <option value="Bogotá"></option>
+                  <option value="Bucaramanga"></option>
+                  <option value="Cartagena"></option>
+                  <option value="Cali"></option>
+                  <option value="Medellin"></option>
+                  <option value="Santa Marta"></option>
+                  <option value="Valledupar"></option>
+                </datalist>
               <label for="destino">Destino:</label>
-              <input type="text" id="fname" name="destino" />
+              <!-- <input type="text" id="fname" name="destino" /> -->
+              <input list="destino" id="fname" name="destino"/>
+                <datalist id="destino" >
+                  <option value="Mitu"></option>
+                  <option value="Barranquilla"></option>
+                  <option value="Bogotá"></option>
+                  <option value="Bucaramanga"></option>
+                  <option value="Cartagena"></option>
+                  <option value="Cali"></option>
+                  <option value="Medellin"></option>
+                  <option value="Santa Marta"></option>
+                  <option value="Valledupar"></option>
+                </datalist>
               <label for="ida">Fecha de ida:</label>
               <input type="date" id="fname" name="ida" />
               <label for="pasajero">No. de pasajeros:</label>
