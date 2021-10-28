@@ -71,17 +71,6 @@
             />
           </div>
           <div class="form-group mx-sm-4">
-            <label for="hora_llegada">Hora Llegada</label>
-            <input
-              type="time"
-              name="hora_llegada"
-              id="hora_llegada"
-              class="form-control mt-2 mb-4"
-              placeholder="Hora Llegada"
-              value="{{vuelo.6}}"
-            />
-          </div>
-          <div class="form-group mx-sm-4">
             <label for="hora_salida">Hora Salida</label>
             <input
               type="time"
@@ -90,6 +79,17 @@
               class="form-control mt-2 mb-4"
               placeholder="Hora Salida"
               value="{{vuelo.7}}"
+            />
+          </div>
+          <div class="form-group mx-sm-4">
+            <label for="hora_llegada">Hora Llegada</label>
+            <input
+              type="time"
+              name="hora_llegada"
+              id="hora_llegada"
+              class="form-control mt-2 mb-4"
+              placeholder="Hora Llegada"
+              value="{{vuelo.6}}"
             />
           </div>
           <div class="form-group mx-sm-4">
@@ -158,10 +158,10 @@
           <div class="form-group text-center mb-4" id="link-login">
             <a href="/vuelos">Volver</a>
           </div>
-            {%endfor %}  
+          {%endfor %}
         </form>
       </div>
     </div>
   </div>
-{%endblock%}   
+  {%endblock%}
 </body>
