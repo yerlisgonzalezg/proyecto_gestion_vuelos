@@ -99,7 +99,7 @@
                     <a class="nav-link active" href="/dashboard">Dashboard</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/crear_usuario">Usuarios</a>
+                    <a class="nav-link" href="/usuarios">Usuarios</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a
@@ -123,27 +123,11 @@
                         >
                       </li>
                       <li>
-                        <a class="dropdown-item" href="/agregar_vuelo"
-                          >Agregar vuelos</a
-                        >
-                      </li>
-                      <li><hr class="dropdown-divider" /></li>
-                      <li>
-                        <a class="dropdown-item" href="/modificar_vuelos"
-                          >Editar vuelos</a
-                        >
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="/eliminar_vuelos"
-                          >Eliminar vuelos</a
+                        <a class="dropdown-item" href="/vuelos"
+                          >Administrar vuelos</a
                         >
                       </li>
                     </ul>
-                {% endif %}
-                {% if g.user and session.get('rol') == 'user'  %}
-                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="/buscar_vuelos">Buscar vuelos</a>
-                    </li>
                 {% endif %}
                 </li>
                 <li class="nav-item">
@@ -153,6 +137,12 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-font">
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <img class="nav-link" src="../static/img/user.png" alt="user icon" width="50px">
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" > {{ g.user[1] }}</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Cerrar sesión</a>
                 </li>
