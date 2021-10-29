@@ -110,9 +110,46 @@
             />
           </div>
       </div>
-
       <section id="imagenes">
           <div class="container-fluid ">
+            <div class="row parrafo">
+              <div class="col-md-4 col-lg mt-5 ">
+                <h1>¡Mis reservas!</h1>
+              </div>
+            </div>
+            <div class="row parrafo">
+              <div class="row parrafo">
+                <div class="col-md-4 col-lg-4 mt-5 ">
+                  <h1>Reservas</h1>
+                </div>
+                <div class="col-md-8 col-lg-8 mt-5 ">
+                  <table class="table table-borderless" >
+                    <thead>
+                      <tr>
+                        <th scope="col">Código Vuelo</th>
+                        <th scope="col">Ciudad Origen</th>
+                        <th scope="col">Ciudad Destino</th>
+                        <th scope="col">Tipo de vuelo</th>
+                        <th scope="col">Fecha ida</th>
+                        <th scope="col">Fecha regreso</th>
+                        <th scope="col">Numero tiquetes</th>
+                      </tr>
+                    </thead class="thead-dark">
+                    <tbody>
+                      {%for r in reserva %}
+                        <tr>
+                            <td>{%print(r[13]) %}</td>
+                            <td>{%print(r[6]) %}</td>
+                            <td>{%print(r[7]) %}</td>
+                            <td>{%print(r[8]) %}</td>
+                            <td>{%print(r[9]) %}</td>
+                            <td>{%print(r[10]) %}</td>
+                            <td>{%print(r[11]) %}</td>
+                        </tr>
+                      {%endfor %}
+                    </tbody>
+                  </table>
+              </div>
             <div class="row parrafo">
               <div class="col-md-4 col-lg-4 mt-5 ">
                 <h1>¡Encuentra los mejores destinos para tus vacaciones!</h1>
@@ -135,7 +172,6 @@
                 <img src="../static/img/pexels-gustavo-fring-3885527.jpg" class="rounded float-right "  alt="Foto persona caminando">
               </div>
             </div>
-            
           </div>
       </section>
      

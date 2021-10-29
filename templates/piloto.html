@@ -45,14 +45,9 @@
                       >
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/buscar_vuelos">Vuelos</a>
-                    </li>
-                    <li class="nav-item">
                       <a class="nav-link" href="/comentarios">Comentarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/calificar_vuelos">Calificar vuelo</a>
-                    </li>
                   </ul>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-font">
@@ -114,13 +109,64 @@
       <section id="imagenes">
           <div class="container-fluid ">
             <div class="row parrafo">
-              <div class="col-md-4 col-lg-4 mt-5 ">
-                <h1>¡Bienvenido!</h1>
-              </div>
-              <div class="col-md-4 col-lg-4 mt-5 ">
+              <div class="col-md-4 col-lg mt-5 ">
                 <h1>¡Vuela alto!</h1>
               </div>
-              <div class="col-md-4 col-lg-4 mt-5 ">
+            </div>
+            <div class="row parrafo">
+              <div class="row parrafo">
+                <div class="col-md-4 col-lg-4 mt-5 ">
+                  <h1>Mi información</h1>
+                </div>
+                <div class="col-md-8 col-lg-4 mt-5 ">
+                  <table class="table table-borderless" >
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Cargo</th>
+                      </tr>
+                    </thead class="thead-dark">
+                    <tbody>
+                      {%for user in user_piloto %}
+                        <tr>
+                            <td>{%print(user[1]) %}</td>
+                            <td>{%print(user[2]) %}</td>
+                            <td>{%print(user[4]) %}</td>
+                        </tr>
+                      {%endfor %}
+                    </tbody>
+                  </table>
+              </div>
+            <div class="row parrafo">
+              <div class="row parrafo">
+                <div class="col-md-4 col-lg-4 mt-5 ">
+                  <h1>Mis vuelos</h1>
+                </div>
+                <div class="col-md-4 col-lg-6 mt-5 ">
+                  <table class="table table-sm" >
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">Vuelos asignados</th>
+                        <th scope="col">Avión asignado</th>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>  
+                      </tr>
+                    </thead class="thead-dark">
+                    <tbody>
+                      {%for piloto in pilotos %}
+                        <tr>
+                          <th scope="row">{%print(piloto[4]) %}</th>
+                            <td>{%print(piloto[11]) %}</td>
+                            <td>{%print(piloto[1]) %}</td>
+                            <td>{%print(piloto[2]) %}</td>
+                        </tr>
+                        {%endfor %}
+                    </tbody>
+                  </table>
+              </div>
+            <div class="row parrafo">
+              <div class="col-md-4 col-lg mt-5 ">
                 <h1>¡Porque volar más que una pasión es una manera de vivir! </h1>
               </div>
             </div>
@@ -129,13 +175,12 @@
                 <img src="../static/img/pexels-дмитрий-лимонов-9176702.jpg" class="rounded float-right "  alt="Foto persona sentada">
               </div>
               <div class="col-md-4 col-lg-4 mt-5 mb-5">
-                <img src="../static/img/pexels-photo-1816602.jpeg" class="rounded float-right "  alt="Foto avion">
+                <img src="../static/img/avionvolando.jpg " class="rounded float-right "  alt="Foto avion">
               </div>
               <div class="col-md-4 col-lg-4 mt-5 mb-5">
                 <img src="../static/img/pexels-rafael-cosquiere-2064123.jpg" class="rounded float-right "  alt="Foto persona caminando">
               </div>
             </div>
-            
           </div>
       </section>
      

@@ -29,11 +29,12 @@ nav.navbar {
   font-size: 25px;
 }
 #main .carousel-inner img {
-  max-height: 85vh;
+  max-height: 80vh;
   object-fit: cover;
   filter: grayscale(70%);
 }
-#imagenes img, h1 {
+#imagenes img,
+h1 {
   max-height: 45vh;
   display: flex;
   justify-content: center;
@@ -71,7 +72,8 @@ nav.navbar {
 }
 
 .formulario-login,
-.formulario-registro, .formulario-reservas {
+.formulario-registro,
+.formulario-reservas {
   background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 10px;
@@ -89,6 +91,7 @@ nav.navbar {
   background-image: url(../img/pexels-ekky-wicaksono-2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 #link-login a,
@@ -294,7 +297,10 @@ main .main-input .eye-icon,
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
-.body-vuelos, .body-buscar-vuelos, .vuelos-ida-vuelta, .calificar-vuelos {
+.body-vuelos,
+.body-buscar-vuelos,
+.vuelos-ida-vuelta,
+.calificar-vuelos {
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 25px;
 }
@@ -304,7 +310,7 @@ main .main-input .eye-icon,
   /*background-color: inherit;*/
   float: left;
   border: none;
-  border-radius: 0  10px 0 0;
+  border-radius: 0 10px 0 0;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -323,13 +329,13 @@ main .main-input .eye-icon,
 
 /* Create an active/current tablink class */
 .tab a.active {
-  background-color:#008CBA;
+  background-color: #008cba;
   color: orange;
 }
 
 /* Style the tab content */
- /* Style the tab content */
- .tabcontent {
+/* Style the tab content */
+.tabcontent {
   display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
@@ -341,11 +347,15 @@ main .main-input .eye-icon,
   width: 100%;
 }
 
-.header-vuelos a, .header-vuelos-ida a, .header-calificar-vuelos{
+.header-vuelos a,
+.header-vuelos-ida a,
+.header-calificar-vuelos {
   color: white;
 }
-    
-#calificar_vuelos, #buscar_vuelos_ida_vuelta, #buscar_vuelos_ida{
+
+#calificar_vuelos,
+#buscar_vuelos_ida_vuelta,
+#buscar_vuelos_ida {
   background-color: #1a6bd5;
   color: white;
 }
@@ -369,13 +379,62 @@ main .main-input .eye-icon,
 /*Estilos reservas*/
 
 .body-reservas {
-      height: 880px;
-      background-image: url("../img/pexels-andrea-piacquadio-842921.jpg");
-      background-size: cover;
-      background-repeat:no-repeat;
-      background-position: center center;
-    }
+  height: 880px;
+  background-image: url("../img/pexels-andrea-piacquadio-842921.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 
-.formulario-reservas ul li{
-   list-style: none;
+.formulario-reservas ul li {
+  list-style: none;
+}
+
+.comentarios-contenedor{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.comentarios-caja{
+  width: 500px;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 20px;
+  margin: 15px;
+  cursor:pointer;
+}
+
+.caja-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20;
+}
+
+.nombre-usuario{
+  align-items: right;
+}
+
+.formulario-comentarios {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid lightgrey;
+  color: white;
+  justify-content: left;
+}
+
+.body-comentarios {
+  height: 900px;
+  background-image: url("../img/image-comentarios.jpg");
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 25px;
 }
