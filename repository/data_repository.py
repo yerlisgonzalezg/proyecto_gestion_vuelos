@@ -201,3 +201,4 @@ def consultar_reservas(id):
     ).fetchall()
 
     return cursor
+

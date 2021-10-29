@@ -31,34 +31,28 @@
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="/">Inicio</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="/dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/crear_usuario">Usuarios</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdown">
-                    <li>
-                      <a class="dropdown-item" href="/buscar_vuelos">Buscar vuelos</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/agregar_vuelo">Agregar vuelos</a>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/modificar_vuelos">Editar vuelos</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/eliminar_vuelos">Eliminar vuelos</a>
-                    </li>
+                {% if g.user and session.get('rol') == 'adm'  %}
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/dashboard">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/usuarios">Usuarios</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdown">
+                      <li>
+                        <a class="dropdown-item" href="/buscar_vuelos">Buscar vuelos</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="/vuelos">Administrar vuelos</a>
+                      </li>
                   </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/comentarios">Comentarios</a>
-                </li>
+                {% endif %}
+                {% if g.user and session.get('rol') == 'user'  %}
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/buscar_vuelos">Buscar vuelos</a>
+                  </li>
+                {% endif %}
               </ul>
             </div>
             <div class="collapse navbar-collapse" id="navbar-font">
