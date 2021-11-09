@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <body class="body-registro">
+    <header id="header">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img src="../static/img/aeropuerto.png" alt="logo" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/usuarios">Usuarios</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="true"
+                >
+                  Vuelos
+                </a>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdown"
+                  id="dropdown"
+                >
+                  <li>
+                    <a class="dropdown-item" href="/buscar_vuelos"
+                      >Buscar vuelos</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/vuelos"
+                      >Administrar vuelos</a
+                    >
+                  </li>
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/comentarios">Comentarios</a>
+              </li>
+            </ul>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-font">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Cerrar sesión</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    </header>
+    <main>
+      <section class="section-registro">
+        <div class="container">
+          <div class="row justify-content-center "> 
+            <div class="table-responsive col-md-6 col-lg-10 ">
+              {% with messages = get_flashed_messages() %} {% if messages %}
+                <ul class="flashes">
+                {% for message in messages %}
+                  <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong><li>{{ message }}</li></strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+                </ul>
+              {% endif %} {% endwith %}
+                <div class="container mt-2 mb-2 text-end">
+                    <a href="/crear_usuario" class="fs-5 btn btn-light">Crear usuario</a>
+                </div>
+                <table class="table table-bordered border-light" >
+                    <thead class="table-dark ">
+                      <tr >
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Rol</th>
+                        <th colspan="2" class="table-dark text-center" >Opciones</th>
+
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tbody class="table-dark"> 
+                      {%for usuario in usuarios %}
+      
+                      <tr>
+                        <th scope="row">{%print(usuario[1]) %}</th>
+                        <td>{%print(usuario[2]) %}</td>
+                        <td>{%print(usuario[4]) %}</td>
+                        <td class="text-center">
+                            <a class="btn btn-warning " href="/editar/{{usuario[0]}}">editar</a>
+                        </td >
+                        <td class="text-center">
+                            <a class="btn btn-danger btn-delete" href="/eliminar/{{usuario[0]}}">eliminar</a>
+                        </td>
+                        
+                      </tr>
+                      {%endfor %}
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+    </main>
+  
+    
+  </body>
+{% endblock %} 
+

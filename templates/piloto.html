@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" href="../static/img/aeropuerto.png" />
+
+    <title>Inicio</title>
+  </head>
+  <body>
+    <header id="header">
+        <div>
+            <nav class="navbar navbar-expand-lg fixed-top">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                  <img src="../static/img/aeropuerto.png" alt="logo" />
+                </a>
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/"
+                        >Inicio</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/comentarios">Comentarios</a>
+                    </li>
+                    <li class="nav-item">
+                  </ul>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-font">
+                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <img class="nav-link" src="../static/img/user.png" alt="user icon" width="50px">
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" > {{ g.user[1] }}</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout">Cerrar sesión</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+    </header>
+
+    <main id="main">
+      <div
+        id="carousel"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-pause="“false”"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../static/img/pexels-rafael-cosquiere-2064123.jpg"
+              class="d-block w-100"
+              alt="foto aeropuerto1"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/pexels-matheus-bertelli-2868219.jpg"
+              class="d-block w-100"
+              alt="foto aeropuerto2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/pexels-ekky-wicaksono-3760564.jpg"
+              class="d-block w-100"
+              alt="foto aeropuerto3"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/pexels-pixabay-47044.jpg"
+              class="d-block w-100"
+              alt="foto aeropuerto4"
+            />
+          </div>
+      </div>
+
+      <section id="imagenes">
+          <div class="container-fluid ">
+            <div class="row parrafo">
+              <div class="col-md-4 col-lg mt-5 ">
+                <h1>¡Vuela alto!</h1>
+              </div>
+            </div>
+            <div class="row parrafo">
+              <div class="row parrafo">
+                <div class="col-md-4 col-lg-4 mt-5 ">
+                  <h1>Mi información</h1>
+                </div>
+                <div class="col-md-8 col-lg-4 mt-5 ">
+                  <table class="table table-borderless" >
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Cargo</th>
+                      </tr>
+                    </thead class="thead-dark">
+                    <tbody>
+                      {%for user in user_piloto %}
+                        <tr>
+                            <td>{%print(user[1]) %}</td>
+                            <td>{%print(user[2]) %}</td>
+                            <td>{%print(user[4]) %}</td>
+                        </tr>
+                      {%endfor %}
+                    </tbody>
+                  </table>
+              </div>
+            <div class="row parrafo">
+              <div class="row parrafo">
+                <div class="col-md-4 col-lg-4 mt-5 ">
+                  <h1>Mis vuelos</h1>
+                </div>
+                <div class="col-md-4 col-lg-6 mt-5 ">
+                  <table class="table table-sm" >
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">Vuelos asignados</th>
+                        <th scope="col">Avión asignado</th>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>  
+                      </tr>
+                    </thead class="thead-dark">
+                    <tbody>
+                      {%for piloto in pilotos %}
+                        <tr>
+                          <th scope="row">{%print(piloto[4]) %}</th>
+                            <td>{%print(piloto[11]) %}</td>
+                            <td>{%print(piloto[1]) %}</td>
+                            <td>{%print(piloto[2]) %}</td>
+                        </tr>
+                        {%endfor %}
+                    </tbody>
+                  </table>
+              </div>
+            <div class="row parrafo">
+              <div class="col-md-4 col-lg mt-5 ">
+                <h1>¡Porque volar más que una pasión es una manera de vivir! </h1>
+              </div>
+            </div>
+            <div class="row parrafo">
+              <div class="col-md-4 col-lg-4 mt-5 mb-5">
+                <img src="../static/img/pexels-дмитрий-лимонов-9176702.jpg" class="rounded float-right "  alt="Foto persona sentada">
+              </div>
+              <div class="col-md-4 col-lg-4 mt-5 mb-5">
+                <img src="../static/img/avionvolando.jpg " class="rounded float-right "  alt="Foto avion">
+              </div>
+              <div class="col-md-4 col-lg-4 mt-5 mb-5">
+                <img src="../static/img/pexels-rafael-cosquiere-2064123.jpg" class="rounded float-right "  alt="Foto persona caminando">
+              </div>
+            </div>
+          </div>
+      </section>
+     
+    </main>
+
+    <footer id="footer" class="">
+      
+      <div class="container">
+        <div class="row justify-content-lg-end">
+          <div class="col ">
+            <h6>Aeropuerto Fabio Alberto León Bentley - Mitú, Colombia</h6>
+            <h6>Todos los derechos reservados</h6>
+  
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
